@@ -7,16 +7,13 @@ function getExperiences(req, res){
     Experience.find((err, experiences) => {
         if(err) res.send(err);
         res.send(experiences);
-        
-        console.log("experiences");
-        console.log(experiences);
     });
 }
 
 // Récupérer une experience par son titre (GET)
 function getExperience(req, res){
-    let experienceTitre = req.params.titre;
-    Experience.findOne({titre: experienceTitre}, (err, experience) =>{
+    let experienceId = req.params.id;
+    Experience.findOne({id: experienceTitre}, (err, experience) =>{
         if(err) res.send(err);
         res.json(experience);
     })
@@ -25,6 +22,7 @@ function getExperience(req, res){
 // Ajout d'une experience (POST)
 function postExperience(req, res){
     let experience = new Experience();
+    experience.id = req.body.id;
     experience.langue = req.body.langue;
     experience.periode_debut = req.body.periode_debut;
     experience.periode_fin = req.body.periode_fin;
@@ -38,7 +36,7 @@ function postExperience(req, res){
     });
     experience.save((err) => {
         if(err) res.send("can't post assignment: ", err);
-        res.json({ message: `'${experience.diplome}' diploma saved !`});
+        res.json({ message: `experience '${experience.titre}' saved !`});
     });
 }
 
@@ -54,7 +52,7 @@ function updateExperience(req, res) {
 function deleteExperience(req, res) {
     Experience.findByIdAndRemove(req.params.id, (err, experience) => {
         if(err) res.send(err);
-        res.json({message: `'${experience.diplome}' diploma deleted`});
+        res.json({message: `experience '${experience.titre}' deleted`});
     })
 }
 
