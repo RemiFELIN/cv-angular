@@ -2,6 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let ExperienceSchema = Schema({
+    id: Number,
     langue: String,
     periode_debut: String,
     periode_fin: String,

@@ -52,9 +52,9 @@ app.route(prefix + '/experiences')
   .post(experience.postExperience)
   .put(experience.updateExperience);
 
-// app.route(prefix + '/assignments/:titre')
-//   .get(assignment.getAssignment)
-//   .delete(assignment.deleteAssignment); 
+app.route(prefix + '/experiences/:id')
+  .get(experience.getExperience)
+  .delete(experience.deleteExperience); 
   
 // FORMATIONS
 app.route(prefix + '/formations')
@@ -62,13 +62,22 @@ app.route(prefix + '/formations')
   .post(formation.postFormation)
   .put(formation.updateFormation);
 
+app.route(prefix + '/formations/:id')
+  .get(formation.getFormation)
+  .delete(formation.deleteFormation); 
+
 // USERS
-app.route(prefix + '/users').get(user.getUsers);
+app.route(prefix + '/users')
+  .get(user.getUsers)
+  .post(user.postUser)
+  .put(user.updateUser);
+
+app.route(prefix + '/users/:id')
+  .get(user.getUser)
+  .delete(user.deleteUser);
 
 // On démarre le serveur
 app.listen(port, "0.0.0.0");
 console.log('Serveur démarré sur http://localhost:' + port);
 
 module.exports = app;
-
-
