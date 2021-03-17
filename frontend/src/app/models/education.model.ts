@@ -7,4 +7,13 @@ export class Education {
     diplome: string;
     description: string;
     lien: string;
+    /*
+    id: number;
+    language: string;
+    start_year: number;
+    end_year: number;
+    diploma: string;
+    description: string;
+    link: string;
+    */
   }

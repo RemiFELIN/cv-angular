@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {HttpClientModule} from '@angular/common/http';
 
 const routes:Routes = [
   { path:'resume', component: ResumeComponent},
@@ -28,6 +29,7 @@ const routes:Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

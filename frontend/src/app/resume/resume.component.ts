@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Education } from '../models/education.model';
 import { Experience } from '../models/experience.model';
+import { ExperienceService } from '../shared/experience.service';
+import { EducationService } from '../shared/education.service';
 
 @Component({
   selector: 'app-resume',
@@ -9,8 +11,8 @@ import { Experience } from '../models/experience.model';
 })
 export class ResumeComponent implements OnInit {
 
-  educations: Education[] = [
-    {
+  educations: Education[] = [];
+  /*  {
       id: 1,
       langue: "en",
       annee_debut: 2015,
@@ -37,8 +39,9 @@ export class ResumeComponent implements OnInit {
       description: "In this syllabus, i learn fundamentals concepts related to applied mathematics, informatics methods and economics topics.",
       lien: "https://univ-cotedazur.fr/offre-de-formation/licence-mathematiques-et-informatique-appliquees-aux-sciences-humaines-et-sociales"
     },
-  ];
-  experiences: Experience[] = [
+  ];*/
+  experiences: Experience[] = [];
+  /*experiences: Experience[] = [
     {
       id: 1,
       langue: "fr",
@@ -63,11 +66,20 @@ export class ResumeComponent implements OnInit {
       titre: "test2",
       missions: null
     },
-  ];
+  ];*/
 
-  constructor() { }
+  constructor(private experienceService:ExperienceService,
+              private educationService:EducationService) { }
 
   ngOnInit(): void {
+    this.experienceService.getExperiences()
+    .subscribe(a => {
+      this.experiences = a;
+    })
+    this.educationService.getExperiences()
+    .subscribe(a => {
+      this.educations = a;
+    })
   }
 
 }
