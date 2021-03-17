@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Education } from './education-detail/education.model';
+import { Education } from '../models/education.model';
+import { Experience } from '../models/experience.model';
 
 @Component({
   selector: 'app-resume',
@@ -35,6 +36,32 @@ export class ResumeComponent implements OnInit {
       diplome: "BSC - Applied Mathematics on Socials Sciences (MASS) (Today call MIASHS)",
       description: "In this syllabus, i learn fundamentals concepts related to applied mathematics, informatics methods and economics topics.",
       lien: "https://univ-cotedazur.fr/offre-de-formation/licence-mathematiques-et-informatique-appliquees-aux-sciences-humaines-et-sociales"
+    },
+  ];
+  experiences: Experience[] = [
+    {
+      id: 1,
+      langue: "fr",
+      periode_debut: "septembre 2019",
+      periode_fin: "fevrier 2021",
+      titre: "Alternance - SOPRA STERIA - Sophia-Antipolis",
+      missions: null
+    },
+    {
+      id: 2,
+      langue: "en",
+      periode_debut: "september 2019",
+      periode_fin: "fevrier 2021",
+      titre: "test",
+      missions: null
+    },
+    {
+      id: 3,
+      langue: "fr",
+      periode_debut: "septembre 2019",
+      periode_fin: "fevrier 2021",
+      titre: "test2",
+      missions: null
     },
   ];
 

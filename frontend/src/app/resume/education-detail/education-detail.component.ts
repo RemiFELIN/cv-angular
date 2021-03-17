@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Education } from './education.model';
+import { Education } from '../../models/education.model';
 
 @Component({
   selector: 'app-education-detail',
@@ -14,5 +14,4 @@ export class EducationDetailComponent implements OnInit {
   }
 
   @Input() education:Education;
-
 }
