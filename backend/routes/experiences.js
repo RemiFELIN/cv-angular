@@ -7,16 +7,13 @@ function getExperiences(req, res){
     Experience.find((err, experiences) => {
         if(err) res.send(err);
         res.send(experiences);
-        
-        console.log("experiences");
-        console.log(experiences);
     });
 }
 
 // Récupérer une experience par son titre (GET)
 function getExperience(req, res){
-    let experienceTitre = req.params.titre;
-    Experience.findOne({titre: experienceTitre}, (err, experience) =>{
+    let experienceId = req.params.id;
+    Experience.findOne({id: experienceId}, (err, experience) =>{
         if(err) res.send(err);
         res.json(experience);
     })
@@ -25,20 +22,21 @@ function getExperience(req, res){
 // Ajout d'une experience (POST)
 function postExperience(req, res){
     let experience = new Experience();
-    experience.langue = req.body.langue;
-    experience.periode_debut = req.body.periode_debut;
-    experience.periode_fin = req.body.periode_fin;
-    experience.titre = req.body.titre;
+    experience.id = req.body.id;
+    experience.language = req.body.language;
+    experience.start_period = req.body.start_period;
+    experience.end_period = req.body.end_period;
+    experience.title = req.body.title;
     req.body.missions.forEach(function (item){
         mission = new Mission();
-        mission.titre = item.titre;
+        mission.title = item.title;
         mission.description = item.description;
         mission.technologies = item.technologies;
         experience.missions.append(mission);
     });
     experience.save((err) => {
-        if(err) res.send("can't post assignment: ", err);
-        res.json({ message: `'${experience.diplome}' diploma saved !`});
+        if(err) res.send("can't post experience: ", err);
+        res.json({ message: `experience '${experience.title}' saved !`});
     });
 }
 
@@ -54,7 +52,7 @@ function updateExperience(req, res) {
 function deleteExperience(req, res) {
     Experience.findByIdAndRemove(req.params.id, (err, experience) => {
         if(err) res.send(err);
-        res.json({message: `'${experience.diplome}' diploma deleted`});
+        res.json({message: `experience '${experience.title}' deleted`});
     })
 }
 

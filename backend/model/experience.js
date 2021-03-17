@@ -2,12 +2,13 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let ExperienceSchema = Schema({
-    langue: String,
-    periode_debut: String,
-    periode_fin: String,
-    titre: String,
-    missions: [{
-        titre: String,
+    id: Number,
+    language: String,
+    start_period: String,
+    end_period: String,
+    title: String,
+    assignments: [{
+        title: String,
         description: String,
         technologies: [String]
     }]

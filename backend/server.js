@@ -3,7 +3,7 @@ let app = express();
 let bodyParser = require('body-parser');
 
 let experience = require('./routes/experiences');
-let formation = require('./routes/formations');
+let education = require('./routes/educations');
 let user = require('./routes/users');
 
 let mongoose = require('mongoose');
@@ -52,23 +52,32 @@ app.route(prefix + '/experiences')
   .post(experience.postExperience)
   .put(experience.updateExperience);
 
-// app.route(prefix + '/assignments/:titre')
-//   .get(assignment.getAssignment)
-//   .delete(assignment.deleteAssignment); 
+app.route(prefix + '/experiences/:id')
+  .get(experience.getExperience)
+  .delete(experience.deleteExperience); 
   
-// FORMATIONS
-app.route(prefix + '/formations')
-  .get(formation.getFormations)
-  .post(formation.postFormation)
-  .put(formation.updateFormation);
+// EDUCATIONS
+app.route(prefix + '/educations')
+  .get(education.getEducations)
+  .post(education.postEducation)
+  .put(education.updateEducation);
+
+app.route(prefix + '/educations/:id')
+  .get(education.getEducation)
+  .delete(education.deleteEducation); 
 
 // USERS
-app.route(prefix + '/users').get(user.getUsers);
+app.route(prefix + '/users')
+  .get(user.getUsers)
+  .post(user.postUser)
+  .put(user.updateUser);
+
+app.route(prefix + '/users/:id')
+  .get(user.getUser)
+  .delete(user.deleteUser);
 
 // On démarre le serveur
 app.listen(port, "0.0.0.0");
 console.log('Serveur démarré sur http://localhost:' + port);
 
 module.exports = app;
-
-
