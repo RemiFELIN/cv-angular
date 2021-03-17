@@ -3,12 +3,12 @@ let Schema = mongoose.Schema;
 
 let ExperienceSchema = Schema({
     id: Number,
-    langue: String,
-    periode_debut: String,
-    periode_fin: String,
-    titre: String,
-    missions: [{
-        titre: String,
+    language: String,
+    start_period: String,
+    end_period: String,
+    title: String,
+    assignments: [{
+        title: String,
         description: String,
         technologies: [String]
     }]

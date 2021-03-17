@@ -3,7 +3,7 @@ let app = express();
 let bodyParser = require('body-parser');
 
 let experience = require('./routes/experiences');
-let formation = require('./routes/formations');
+let education = require('./routes/educations');
 let user = require('./routes/users');
 
 let mongoose = require('mongoose');
@@ -56,15 +56,15 @@ app.route(prefix + '/experiences/:id')
   .get(experience.getExperience)
   .delete(experience.deleteExperience); 
   
-// FORMATIONS
-app.route(prefix + '/formations')
-  .get(formation.getFormations)
-  .post(formation.postFormation)
-  .put(formation.updateFormation);
+// EDUCATIONS
+app.route(prefix + '/educations')
+  .get(education.getEducations)
+  .post(education.postEducation)
+  .put(education.updateEducation);
 
-app.route(prefix + '/formations/:id')
-  .get(formation.getFormation)
-  .delete(formation.deleteFormation); 
+app.route(prefix + '/educations/:id')
+  .get(education.getEducation)
+  .delete(education.deleteEducation); 
 
 // USERS
 app.route(prefix + '/users')
