@@ -10,10 +10,9 @@ function getPortfolios(req, res){
     });
 }
 
-// Récupérer un portfolio par son uuid (GET)
 function getPortfolio(req, res){
-    let portfolioUuid = req.params.uuid;
-    Portfolio.find({uuid: portfolioUuid}, (err, portfolio) =>{
+    let username = req.params.username;
+    Portfolio.find({username: username}, (err, portfolio) =>{
         if(err) res.send(err);
         res.json(portfolio);
     });
@@ -22,8 +21,7 @@ function getPortfolio(req, res){
 // Ajout d'un portfolio (POST)
 function postPortfolio(req, res){
     let portfolio = new Portfolio();
-    portfolio.id = req.body.id;
-    portfolio.uuid = req.body.uuid;
+    portfolio.username = req.body.username;
     portfolio.language = req.body.language;
     portfolio.type = req.body.type;
     portfolio.image = req.body.image;

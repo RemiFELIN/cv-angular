@@ -2,8 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let PortfolioSchema = Schema({
-    id: Number,
-    uuid: Number,
+    username: String,
     language: String,
     type: String,
     image: String,

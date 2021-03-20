@@ -11,10 +11,9 @@ function getExperiences(req, res){
     });
 }
 
-// Récupérer une experience par son uuid (GET)
 function getExperience(req, res){
-    let experienceUuid = req.params.uuid;
-    Experience.find({uuid: experienceUuid}, (err, experience) =>{
+    let username = req.params.username;
+    Experience.find({username: username}, (err, experience) =>{
         if(err) res.send(err);
         res.json(experience);
     })
@@ -23,8 +22,7 @@ function getExperience(req, res){
 // Ajout d'une experience (POST)
 function postExperience(req, res){
     let experience = new Experience();
-    experience.id = req.body.id;
-    experience.uuid = req.body.uuid;
+    experience.username = req.body.username;
     experience.language = req.body.language;
     experience.start_period = req.body.start_period;
     experience.end_period = req.body.end_period;

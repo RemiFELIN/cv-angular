@@ -3,8 +3,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let ExperienceSchema = Schema({
-    id: Number,
-    uuid: Number,
+    username: String,
     language: String,
     start_period: String,
     end_period: String,

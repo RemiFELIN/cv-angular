@@ -13,20 +13,18 @@ function getAboutMes(req, res){
     });
 }
 
-// Récupérer un AboutMe par son uuid (GET)
 function getAboutMe(req, res){
-    let aboutMeUuid = req.params.uuid;
-    AboutMe.find({uuid: aboutMeUuid}, (err, aboutMeUuid) =>{
+    let username = req.params.username;
+    AboutMe.find({username: username}, (err, aboutme) =>{
         if(err) res.send(err);
-        res.json(aboutMeUuid);
+        res.json(aboutme);
     });
 }
 
 // Ajout d'un AboutMe (POST)
 function postAboutMe(req, res){
     let aboutme = new AboutMe();
-    aboutme.id = req.body.id;
-    aboutme.uuid = req.body.uuid;
+    aboutme.username = req.body.username;
     aboutme.language = req.body.language;
     aboutme.presentation = req.body.presentation;
     req.body.works.forEach(function (item){

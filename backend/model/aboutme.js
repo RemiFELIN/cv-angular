@@ -1,13 +1,12 @@
-let Work = require('../model/aboutme/work');
-let Workflow = require('../model/aboutme/workflow');
-let Testimonial = require('../model/aboutme/testimonial');
+let Work = require('../model/aboutme/work').schema;
+let Workflow = require('../model/aboutme/workflow').schema;
+let Testimonial = require('../model/aboutme/testimonial').schema;
 
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let AboutMeSchema = Schema({
-    id: Number,
-    uuid: Number,
+    username: String,
     language: String,
     presentation: String,
     works: [Work],

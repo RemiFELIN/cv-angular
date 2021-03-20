@@ -10,10 +10,9 @@ function getMessages(req, res){
     });
 }
 
-// Récupérer un message par son uuid (GET)
 function getMessage(req, res){
-    let messageUuid = req.params.uuid;
-    Message.find({uuid: messageUuid}, (err, message) =>{
+    let username = req.params.username;
+    Message.find({username: username}, (err, message) =>{
         if(err) res.send(err);
         res.json(message);
     });
@@ -22,8 +21,7 @@ function getMessage(req, res){
 // Ajout d'un message (POST)
 function postMessage(req, res){
     let message = new Message();
-    message.id = req.body.id;
-    message.uuid = req.body.uuid;
+    message.username = req.body.username;
     message.name = req.body.name;
     message.mail = req.body.mail;
     message.message = req.body.message;

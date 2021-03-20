@@ -3,8 +3,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let SkillSchema = Schema({
-    id: Number,
-    uuid: Number,
+    username: String,
     language: String,
     type: String,
     areas: [Area]

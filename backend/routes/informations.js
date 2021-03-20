@@ -7,13 +7,13 @@ function getInformations(req, res){
     Information.find((err, informations) => {
         if(err) res.send(err);
         res.send(informations);
+        console.log(informations);
     });
 }
 
-// Récupérer une Information par son uuid (GET)
 function getInformation(req, res){
-    let informationUuid = req.params.uuid;
-    Information.find({uuid: informationUuid}, (err, information) =>{
+    let username = req.params.username;
+    Information.find({username: username}, (err, information) =>{
         if(err) res.send(err);
         res.json(information);
     });
@@ -22,8 +22,7 @@ function getInformation(req, res){
 // Ajout d'une Information (POST)
 function postInformation(req, res){
     let information = new Information();
-    information.id = req.body.id;
-    information.uuid = req.body.uuid;
+    information.username = req.body.username;
     information.language = req.body.language;
     information.name = req.body.name;
     information.surname = req.body.surname;
@@ -35,10 +34,10 @@ function postInformation(req, res){
     information.driving_licence = req.body.driving_licence;
     information.github = req.body.github;
     information.acm_account = req.body.acm_account;
-    information.adress = req.body.adress;
+    information.address = req.body.adress;
     information.postal_code = req.body.postal_code;
     information.country = req.body.country;
-    experience.save((err) => {
+    information.save((err) => {
         if(err) res.send("can't post information: ", err);
         res.json({ message: `Your informations has been saved !`});
     });

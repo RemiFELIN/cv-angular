@@ -2,8 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let InformationSchema = Schema({
-    id: Number,
-    uuid: Number,
+    username: String,
     language: String,
     name: String,
     surname: String,
@@ -15,7 +14,7 @@ let InformationSchema = Schema({
     driving_licence: String,
     github: String,
     acm_account: String,
-    adress: String,
+    address: String,
     postal_code: String,
     country: String
 });
