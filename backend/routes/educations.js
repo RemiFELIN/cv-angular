@@ -10,10 +10,9 @@ function getEducations(req, res){
     });
 }
 
-// Récupérer une formation par son uuid (GET)
 function getEducation(req, res){
-    let educationUuid = req.params.uuid;
-    Education.find({uuid: educationUuid}, (err, education) =>{
+    let username = req.params.username;
+    Education.find({username: username}, (err, education) =>{
         if(err) res.send(err);
         res.json(education);
     })
@@ -22,8 +21,7 @@ function getEducation(req, res){
 // Ajout d'une formation (POST)
 function postEducation(req, res){
     let education = new Formation();
-    education.id = req.body.id;
-    education.uuid = req.body.uuid;
+    education.username = req.body.username;
     education.language = req.body.language;
     education.start_year = req.body.start_year;
     education.end_year = req.body.end_year;

@@ -2,8 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let MessageSchema = Schema({
-    id: Number,
-    uuid: Number,
+    username: String,
     language: String,
     name: String,
     mail: String,

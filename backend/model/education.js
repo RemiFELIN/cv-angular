@@ -2,8 +2,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let EducationSchema = Schema({
-    id: Number,
-    uuid: Number,
+    username: String,
     language: String,
     start_year: Number,
     end_year: Number,

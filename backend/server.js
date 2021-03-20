@@ -1,6 +1,8 @@
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
+var jwt = require('jsonwebtoken');
+let config = require('./config');
 
 let aboutme = require('./routes/aboutmes');
 let education = require('./routes/educations');
@@ -57,7 +59,7 @@ app.route(prefix + '/aboutmes')
   .post(aboutme.postAboutMe)
   .put(aboutme.updateAboutMe);
 
-app.route(prefix + '/aboutmes/:uuid')
+app.route(prefix + '/:username/aboutme')
   .get(aboutme.getAboutMe)
   .delete(aboutme.deleteAboutMe); 
 
@@ -67,7 +69,7 @@ app.route(prefix + '/educations')
 .post(education.postEducation)
 .put(education.updateEducation);
 
-app.route(prefix + '/educations/:uuid')
+app.route(prefix + '/:username/education')
 .get(education.getEducation)
 .delete(education.deleteEducation);
 
@@ -77,7 +79,7 @@ app.route(prefix + '/experiences')
   .post(experience.postExperience)
   .put(experience.updateExperience);
 
-app.route(prefix + '/experiences/:uuid')
+app.route(prefix + '/:username/experience')
   .get(experience.getExperience)
   .delete(experience.deleteExperience); 
 
@@ -88,7 +90,7 @@ app.route(prefix + '/informations')
 .post(information.postInformation)
 .put(information.updateInformation);
 
-app.route(prefix + '/informations/:uuid')
+app.route(prefix + '/:username/information')
 .get(information.getInformation)
 .delete(information.deleteInformation);
 
@@ -98,7 +100,7 @@ app.route(prefix + '/messages')
 .post(message.postMessage)
 .put(message.updateMessage);
 
-app.route(prefix + '/messages/:uuid')
+app.route(prefix + '/:username/message')
 .get(message.getMessage)
 .delete(message.deleteMessage);
 
@@ -108,7 +110,7 @@ app.route(prefix + '/portfolios')
 .post(portfolio.postPortfolio)
 .put(portfolio.updatePortfolio);
 
-app.route(prefix + '/portfolios/:uuid')
+app.route(prefix + '/:username/portfolio')
 .get(portfolio.getPortfolio)
 .delete(portfolio.deletePortfolio);
 
@@ -118,19 +120,32 @@ app.route(prefix + '/skills')
 .post(skill.postSkill)
 .put(skill.updateSkill);
 
-app.route(prefix + '/skills/:uuid')
+app.route(prefix + '/:username/skill')
 .get(skill.getSkill)
 .delete(skill.deleteSkill);
 
 // USERS
 app.route(prefix + '/users')
   .get(user.getUsers)
-  .post(user.postUser)
+  .post(user.register)
   .put(user.updateUser);
 
-app.route(prefix + '/users/:uuid')
+app.route(prefix + '/:username/users')
   .get(user.getUser)
   .delete(user.deleteUser);
+
+/*
+app.route(prefix + '/user').get((req, res) => {
+  var token = req.headers['x-access-token'];
+  if(!token) return res.status(401).send({auth: false, message: 'No token provided.'});
+  jwt.verify(token, config.secret, (err, decoded) => {
+    if(err) return res.status(500).send({auth: false, message: 'Failed to authenticate token'});
+    res.status(200).send(decoded);
+  });
+});
+
+app.route(prefix + '/login').post(user.login);
+*/
 
 // On démarre le serveur
 app.listen(port, "0.0.0.0");

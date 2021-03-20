@@ -11,10 +11,9 @@ function getSkills(req, res){
     });
 }
 
-// Récupérer un skill par son uuid (GET)
 function getSkill(req, res){
-    let skillUuid = req.params.uuid;
-    Skill.find({uuid: skillUuid}, (err, skill) =>{
+    let username = req.params.username;
+    Skill.find({username: username}, (err, skill) =>{
         if(err) res.send(err);
         res.json(skill);
     })
@@ -23,8 +22,7 @@ function getSkill(req, res){
 // Ajout d'une Skill (POST)
 function postSkill(req, res){
     let skill = new Skill();
-    skill.id = req.body.id;
-    skill.uuid = req.body.uuid;
+    skill.username = req.body.username;
     skill.language = req.body.language;
     skill.type = req.body.type;
     req.body.areas.forEach(function (item){
