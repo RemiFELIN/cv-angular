@@ -1,7 +1,5 @@
 <div>
-    <a routerLink="/home">Home</a>
-    <a routerLink="/about-me">About Me</a>
-    <a routerLink="/resume">Resume</a>
-    <a routerLink="/portfolio">Portfolio</a>
-    <a routerLink="/contact">Contact</a>
+    <a *ngFor="let route of routers" routerLink="{{ route.route }}">{{ route.nom }}</a>
+    <a routerLink="/1/home">-> Remi Félin</a>
+    <a routerLink="/2/home">-> Benjamin Molinet</a>
 </div>

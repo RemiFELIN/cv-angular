@@ -19,15 +19,16 @@ import { BackOfficeComponent } from './back-office/back-office.component';
 import { ResumeBackComponent } from './back-office/resume/resume.component';
 import { BackEducationFieldComponent } from './back-office/resume/back-education-field/back-education-field.component';
 import { FormsModule } from '@angular/forms';
+import { CvListComponent } from './cv-list/cv-list.component';
 
 const routes:Routes = [
-  { path:'', component: HomeComponent },
+  { path:':uuid', component: MenuComponent },
   { path:':uuid/home', component: HomeComponent },
-  { path:'about-me', component: AboutMeComponent },
-  { path:'resume', component: ResumeComponent },
-  { path:'portfolio', component: PortfolioComponent },
-  { path:'contact', component: ContactComponent },
-  { path:'back', component: BackOfficeComponent },
+  { path:':uuid/about-me', component: AboutMeComponent },
+  { path:':uuid/resume', component: ResumeComponent },
+  { path:':uuid/portfolio', component: PortfolioComponent },
+  { path:':uuid/contact', component: ContactComponent },
+  { path:':uuid/back', component: BackOfficeComponent },
   { path: '**', component: NotFoundComponent },
 ]
 
@@ -46,6 +47,7 @@ const routes:Routes = [
     BackOfficeComponent,
     ResumeBackComponent,
     BackEducationFieldComponent,
+    CvListComponent,
   ],
   imports: [
     BrowserModule,

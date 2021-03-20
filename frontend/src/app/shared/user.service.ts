@@ -23,11 +23,18 @@ export class UserService {
     };
   }
 
+  getUsers():Observable<User[]> {
+    return this.http.get<User[]>(this.url)
+    .pipe(
+      catchError(this.handleError<User[]>("getUsers()"))
+    );
+  }
+
   getUserByUuid(uuid):Observable<User> {
     console.log(this.url + "/" + uuid)
     return this.http.get<User>(this.url + "/" + uuid)
     .pipe(
-      catchError(this.handleError<User>("getEducations()"))
+      catchError(this.handleError<User>("getUserByUuid(uuid)"))
     );
   }
 }

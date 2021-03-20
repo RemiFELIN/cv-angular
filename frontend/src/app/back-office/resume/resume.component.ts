@@ -16,7 +16,7 @@ export class ResumeBackComponent implements OnInit {
   constructor(private educationService:EducationService) { }
 
   ngOnInit(): void {
-    this.educationService.getEducations()
+    this.educationService.getEducations(2)
     .subscribe(a => {
       this.educations = a;
     })
