@@ -13,11 +13,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ScrollingModule} from '@angular/cdk/scrolling';
 import { FactScrollerComponent } from './portfolio/fact-scroller.component';
+import { AboutMeComponent } from './about-me/about-me.component';
+import { ContactComponent } from './contact/contact.component';
+import { BackOfficeComponent } from './back-office/back-office.component';
+import { ResumeBackComponent } from './back-office/resume/resume.component';
+import { BackEducationFieldComponent } from './back-office/resume/back-education-field/back-education-field.component';
+import { FormsModule } from '@angular/forms';
 
 const routes:Routes = [
-  { path:'resume', component: ResumeComponent},
-  { path:'portfolio', component: PortfolioComponent},
-  { path:'', component: HomeComponent},
+  { path:'', component: HomeComponent },
+  { path:':uuid/home', component: HomeComponent },
+  { path:'about-me', component: AboutMeComponent },
+  { path:'resume', component: ResumeComponent },
+  { path:'portfolio', component: PortfolioComponent },
+  { path:'contact', component: ContactComponent },
+  { path:'back', component: BackOfficeComponent },
   { path: '**', component: NotFoundComponent },
 ]
 
@@ -31,12 +41,18 @@ const routes:Routes = [
     MenuComponent,
     PortfolioComponent,
     FactScrollerComponent,
+    AboutMeComponent,
+    ContactComponent,
+    BackOfficeComponent,
+    ResumeBackComponent,
+    BackEducationFieldComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    ScrollingModule
+    ScrollingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

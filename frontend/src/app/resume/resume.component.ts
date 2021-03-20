@@ -18,11 +18,7 @@ export class ResumeComponent implements OnInit {
               private educationService:EducationService) { }
 
   ngOnInit(): void {
-    this.experienceService.getExperiences()
-    .subscribe(a => {
-      this.experiences = a;
-    })
-    this.educationService.getExperiences()
+    this.educationService.getEducations()
     .subscribe(a => {
       this.educations = a;
     })

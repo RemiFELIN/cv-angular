@@ -22,11 +22,16 @@ export class EducationService {
     };
   }
 
-  getExperiences():Observable<Education[]> {
-    //return of(this.experiences);
+  getEducations():Observable<Education[]> {
     return this.http.get<Education[]>(this.url)
     .pipe(
       catchError(this.handleError<Education[]>("getEducations()"))
     );
+  }
+
+  updateEducations(education:Education):Observable<any> {
+    console.log("Modifié...");
+    
+    return this.http.put(this.url, education);
   }
 }
