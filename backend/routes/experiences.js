@@ -1,4 +1,5 @@
 let Experience = require('../model/experience');
+let Assignment = require('../model/experience/assignment');
 
 // https://afteracademy.com/blog/mastering-mongoose-for-mongodb-and-nodejs
 
@@ -10,10 +11,10 @@ function getExperiences(req, res){
     });
 }
 
-// Récupérer une experience par son titre (GET)
+// Récupérer une experience par son uuid (GET)
 function getExperience(req, res){
-    let experienceId = req.params.id;
-    Experience.findOne({id: experienceId}, (err, experience) =>{
+    let experienceUuid = req.params.uuid;
+    Experience.find({uuid: experienceUuid}, (err, experience) =>{
         if(err) res.send(err);
         res.json(experience);
     })
@@ -23,16 +24,17 @@ function getExperience(req, res){
 function postExperience(req, res){
     let experience = new Experience();
     experience.id = req.body.id;
+    experience.uuid = req.body.uuid;
     experience.language = req.body.language;
     experience.start_period = req.body.start_period;
     experience.end_period = req.body.end_period;
     experience.title = req.body.title;
-    req.body.missions.forEach(function (item){
-        mission = new Mission();
-        mission.title = item.title;
-        mission.description = item.description;
-        mission.technologies = item.technologies;
-        experience.missions.append(mission);
+    req.body.assignments.forEach(function (item){
+        assignment = new Assignment();
+        assignment.title = item.title;
+        assignment.description = item.description;
+        assignment.technologies = item.technologies;
+        experience.assignments.append(assignment);
     });
     experience.save((err) => {
         if(err) res.send("can't post experience: ", err);

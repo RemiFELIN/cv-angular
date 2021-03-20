@@ -10,10 +10,10 @@ function getUsers(req, res){
     });
 }
 
-// Récupérer un utilisateur par son id (GET)
+// Récupérer un utilisateur par son uuid (GET)
 function getUser(req, res){
-    let userId = req.params.id;
-    User.findOne({id: userId}, (err, user) =>{
+    let userUuid = req.params.uuid;
+    User.findOne({uuid: userUuid}, (err, user) =>{
         if(err) res.send(err);
         res.json(user);
     });
@@ -22,19 +22,9 @@ function getUser(req, res){
 // Ajout d'un utilisateur (POST)
 function postUser(req, res){
     let user = new User();
-    user.id = req.body.id;
-    user.nom_utilisateur = req.body.nom_utilisateur; 
-    user.mot_de_passe = req.body.mot_de_passe;
-    user.nom = req.body.nom;
-    user.prenom = req.body.prenom;
-    user.age = req.body.age;
-    user.metier = req.body.metier;
-    user.telephone = req.body.telephone;
-    user.mail = req.body.mail;
-    user.linkedin = req.body.linkedin;
-    user.localisation = req.body.localisation;
-    user.permis_conduire = req.body.permis_conduire;
-    user.github = req.body.github;
+    user.uuid = req.body.uuid;
+    user.username = req.body.username;
+    user.password = req.body.password;
     user.save((err) => {
         if(err) res.send("can't post formation: ", err);
         res.json({ message: `'${user.nom_utilisateur}' saved !`});

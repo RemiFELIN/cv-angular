@@ -2,8 +2,13 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 
-let experience = require('./routes/experiences');
+let aboutme = require('./routes/aboutmes');
 let education = require('./routes/educations');
+let experience = require('./routes/experiences');
+let information = require('./routes/informations');
+let message = require('./routes/messages');
+let portfolio = require('./routes/portfolios');
+let skill = require('./routes/skills');
 let user = require('./routes/users');
 
 let mongoose = require('mongoose');
@@ -46,25 +51,76 @@ let port = process.env.PORT || 8010;
 // les routes
 const prefix = '/api';
 
+// ABOUTMES
+app.route(prefix + '/aboutmes')
+  .get(aboutme.getAboutMes)
+  .post(aboutme.postAboutMe)
+  .put(aboutme.updateAboutMe);
+
+app.route(prefix + '/aboutmes/:uuid')
+  .get(aboutme.getAboutMe)
+  .delete(aboutme.deleteAboutMe); 
+
+// EDUCATIONS
+app.route(prefix + '/educations')
+.get(education.getEducations)
+.post(education.postEducation)
+.put(education.updateEducation);
+
+app.route(prefix + '/educations/:uuid')
+.get(education.getEducation)
+.delete(education.deleteEducation);
+
 // EXPERIENCES
 app.route(prefix + '/experiences')
   .get(experience.getExperiences)
   .post(experience.postExperience)
   .put(experience.updateExperience);
 
-app.route(prefix + '/experiences/:id')
+app.route(prefix + '/experiences/:uuid')
   .get(experience.getExperience)
   .delete(experience.deleteExperience); 
-  
-// EDUCATIONS
-app.route(prefix + '/educations')
-  .get(education.getEducations)
-  .post(education.postEducation)
-  .put(education.updateEducation);
 
-app.route(prefix + '/educations/:id')
-  .get(education.getEducation)
-  .delete(education.deleteEducation); 
+// INFORMATIONS 
+// TODO : ne renvoie pas d'info (to fix)
+app.route(prefix + '/informations')
+.get(information.getInformations)
+.post(information.postInformation)
+.put(information.updateInformation);
+
+app.route(prefix + '/informations/:uuid')
+.get(information.getInformation)
+.delete(information.deleteInformation);
+
+// MESSAGES
+app.route(prefix + '/messages')
+.get(message.getMessages)
+.post(message.postMessage)
+.put(message.updateMessage);
+
+app.route(prefix + '/messages/:uuid')
+.get(message.getMessage)
+.delete(message.deleteMessage);
+
+// PORTFOLIOS
+app.route(prefix + '/portfolios')
+.get(portfolio.getPortfolios)
+.post(portfolio.postPortfolio)
+.put(portfolio.updatePortfolio);
+
+app.route(prefix + '/portfolios/:uuid')
+.get(portfolio.getPortfolio)
+.delete(portfolio.deletePortfolio);
+
+// SKILLS
+app.route(prefix + '/skills')
+.get(skill.getSkills)
+.post(skill.postSkill)
+.put(skill.updateSkill);
+
+app.route(prefix + '/skills/:uuid')
+.get(skill.getSkill)
+.delete(skill.deleteSkill);
 
 // USERS
 app.route(prefix + '/users')
@@ -72,7 +128,7 @@ app.route(prefix + '/users')
   .post(user.postUser)
   .put(user.updateUser);
 
-app.route(prefix + '/users/:id')
+app.route(prefix + '/users/:uuid')
   .get(user.getUser)
   .delete(user.deleteUser);
 

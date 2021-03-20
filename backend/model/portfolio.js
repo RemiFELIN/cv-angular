@@ -1,16 +1,16 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-let EducationSchema = Schema({
+let PortfolioSchema = Schema({
     id: Number,
     uuid: Number,
     language: String,
-    start_year: Number,
-    end_year: Number,
-    diploma: String,
+    type: String,
+    image: String,
+    link: String,
+    git: String,
     description: String,
-    link: String
 });
 
 // C'est à travers ce modèle Mongoose qu'on pourra faire le CRUD
-module.exports = mongoose.model('Education', EducationSchema);
+module.exports = mongoose.model('Portfolio', PortfolioSchema);
