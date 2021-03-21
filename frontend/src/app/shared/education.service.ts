@@ -11,7 +11,7 @@ export class EducationService {
 
   constructor(private http:HttpClient) { }
 
-  url = "http://localhost:8010/api/educations";
+  url = "http://localhost:8010/api/";
 
   private handleError<T>(operation: any, result?: T) {
     return (error: any): Observable<T> => {
@@ -22,11 +22,11 @@ export class EducationService {
     };
   }
 
-  getEducations(uuid:number):Observable<Education[]> {
-    console.log(this.url + "/" + uuid);
-    return this.http.get<Education[]>(this.url + "/" + uuid)
+  getEducations(username:string):Observable<Education[]> {
+    console.log(this.url + username + "/education")
+    return this.http.get<Education[]>(this.url + username + "/education")
     .pipe(
-      catchError(this.handleError<Education[]>("getEducations(uuid)" + uuid))
+      catchError(this.handleError<Education[]>("getEducations(uuid)" + username))
     );
   }
 

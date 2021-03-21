@@ -10,21 +10,22 @@ import { InformationService } from '../shared/information.service';
 })
 export class HomeComponent implements OnInit {
 
-  user:Information;
+  informations:Information;
 
   constructor(private route:ActivatedRoute, 
     private router:Router,
     private informationService:InformationService) { }
 
   ngOnInit(): void {
-    let uuid = this.route.snapshot.params.uuid;
-    console.log(uuid)
-    this.informationService.getInformationByUuid(uuid)
-      .subscribe((user:Information) => {
-        this.user = user;
-        console.log("données reçues....")
-        console.log(user.name)
-      });
+    let username = this.route.snapshot.params.uuid;
+ 
+     this.informationService.getInformations(username)
+     .subscribe(a => {
+       if(a) {
+        this.informations = a;
+        console.log(this.informations)
+       }
+     });
   }
 
 }
