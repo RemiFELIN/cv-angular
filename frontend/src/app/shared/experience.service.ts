@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Experience } from '../models/experience.model';
 import {map, tap, catchError} from 'rxjs/operators';
+import { environment } from '../../environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ExperienceService {
 
   constructor(private http:HttpClient) { }
 
-  url = "http://localhost:8010/api/";
+  url = "https://cv-miage-backend.herokuapp.com/api/";
 
   private handleError<T>(operation: any, result?: T) {
     return (error: any): Observable<T> => {

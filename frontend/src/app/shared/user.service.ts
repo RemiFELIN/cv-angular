@@ -10,9 +10,10 @@ import { User } from '../models/user.model';
 })
 export class UserService {
 
-  url = "http://localhost:8010/api/";
   username:string;
   token:string;
+  
+  url = "https://cv-miage-backend.herokuapp.com/api/users";
 
   constructor(private http:HttpClient) { }
 
