@@ -17,12 +17,12 @@ export class HomeComponent implements OnInit {
     private informationService:InformationService) { }
 
   ngOnInit(): void {
-    let username = this.route.snapshot.params.uuid;
+    let {lang, username} = this.route.snapshot.params;
  
-     this.informationService.getInformations(username)
+     this.informationService.getInformations(lang, username)
      .subscribe(a => {
        if(a) {
-        this.informations = a;
+        this.informations = a[0];
         console.log(this.informations)
        }
      });
