@@ -10,7 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PortfolioComponent } from './portfolio/portfolio.component';
+import { PortfolioScrollerComponent } from './portfolio/portfolio.component';
 import { ScrollingModule} from '@angular/cdk/scrolling';
 import { FactScrollerComponent } from './portfolio/fact-scroller.component';
 import { AboutMeComponent } from './about-me/about-me.component';
@@ -22,11 +22,12 @@ import { FormsModule } from '@angular/forms';
 import { CvListComponent } from './cv-list/cv-list.component';
 
 const routes:Routes = [
+  { path:'home', component: HomeComponent },
   { path:':uuid', component: MenuComponent },
   { path:':uuid/home', component: HomeComponent },
   { path:':uuid/about-me', component: AboutMeComponent },
   { path:':uuid/resume', component: ResumeComponent },
-  { path:':uuid/portfolio', component: PortfolioComponent },
+  { path:':uuid/portfolio', component: PortfolioScrollerComponent },
   { path:':uuid/contact', component: ContactComponent },
   { path:':uuid/back', component: BackOfficeComponent },
   { path: '**', component: NotFoundComponent },
@@ -40,7 +41,7 @@ const routes:Routes = [
     ExperienceDetailComponent,
     HomeComponent,
     MenuComponent,
-    PortfolioComponent,
+    PortfolioScrollerComponent,
     FactScrollerComponent,
     AboutMeComponent,
     ContactComponent,
@@ -48,6 +49,7 @@ const routes:Routes = [
     ResumeBackComponent,
     BackEducationFieldComponent,
     CvListComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@ import { Information } from '../models/information.model';
 })
 export class InformationService {
 
-  url = "http://localhost:8010/api/informations";
+  url = "http://localhost:8010/api/";
 
   constructor(private http:HttpClient) { }
 
@@ -22,9 +22,9 @@ export class InformationService {
     };
   }
 
-  getInformationByUuid(uuid):Observable<Information> {
-    console.log(this.url + "/" + uuid)
-    return this.http.get<Information>(this.url + "/" + uuid)
+  getInformations(username):Observable<Information> {
+    console.log(this.url + username + "/information");
+    return this.http.get<Information>(this.url + username + "/information")
     .pipe(
       catchError(this.handleError<Information>("getInformationByUuid()"))
     );

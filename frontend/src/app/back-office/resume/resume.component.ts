@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Education } from 'src/app/models/education.model';
 import { Experience } from 'src/app/models/experience.model';
 import { EducationService } from 'src/app/shared/education.service';
+import { ExperienceService } from 'src/app/shared/experience.service';
 
 @Component({
   selector: 'app-back-resume',
@@ -13,12 +14,17 @@ export class ResumeBackComponent implements OnInit {
   educations: Education[] = [];
   experiences: Experience[] = [];
 
-  constructor(private educationService:EducationService) { }
+  constructor(private educationService:EducationService,
+              private experienceService:ExperienceService) { }
 
   ngOnInit(): void {
-    this.educationService.getEducations(2)
+    this.educationService.getEducations("remi.felin")
     .subscribe(a => {
       this.educations = a;
+    })
+    this.experienceService.getExperiences("remi.felin")
+    .subscribe(a => {
+      this.experiences = a;
     })
   }
 

@@ -20,19 +20,20 @@ export class ResumeComponent implements OnInit {
               private educationService:EducationService) { }
 
   ngOnInit(): void {
-    /*this.educationService.getEducations()
-    .subscribe(a => {
-      this.educations = a;
-    })*/
-    let uuid = +this.route.snapshot.params.uuid;
-     console.log("EDIT id = " + uuid);
+    let username = this.route.snapshot.params.uuid;
  
-     this.educationService.getEducations(uuid)
+     this.educationService.getEducations(username)
      .subscribe(a => {
        if(a) {
         this.educations = a;
        }
+     });
  
+     this.experienceService.getExperiences(username)
+     .subscribe(a => {
+       if(a) {
+        this.experiences = a;
+       }
      });
   }
 

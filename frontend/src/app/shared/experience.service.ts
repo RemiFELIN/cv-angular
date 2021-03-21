@@ -12,7 +12,7 @@ export class ExperienceService {
 
   constructor(private http:HttpClient) { }
 
-  url = "http://localhost:8010/api/experiences";
+  url = "http://localhost:8010/api/";
 
   private handleError<T>(operation: any, result?: T) {
     return (error: any): Observable<T> => {
@@ -23,11 +23,10 @@ export class ExperienceService {
     };
   }
 
-  getExperiences():Observable<Experience[]> {
-    //return of(this.experiences);
-    return this.http.get<Experience[]>(this.url)
+  getExperiences(username:string):Observable<Experience[]> {
+    return this.http.get<Experience[]>(this.url + username + "/experience")
     .pipe(
-      catchError(this.handleError<Experience[]>("getExperiences()"))
+      catchError(this.handleError<Experience[]>("getExperiences(uuid)" + username))
     );
   }
 }
