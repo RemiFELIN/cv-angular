@@ -35,26 +35,32 @@ function postAboutMe(req, res, next){
         aboutme.username = user.username;
         aboutme.language = req.body.language;
         aboutme.presentation = req.body.presentation;
-        req.body.works.forEach(function (item){
-            work = new Work();
-            work.area = item.area;
-            work.icon_path = item.icon_path;
-            assignment.description = item.description;
-            aboutme.works.append(work);
-        });
-        req.body.workflow.forEach(function (item){
-            wf = new Workflow();
-            wf.step = item.step;
-            wf.description = item.description;
-            aboutme.workflow.append(wf);
-        });
-        req.body.testimonials.forEach(function (item){
-            testimonial = new Testimonial();
-            testimonial.name = item.name;
-            testimonial.job = item.job;
-            testimonial.message = item.message;
-            aboutme.testimonials.append(testimonial);
-        });
+        if(req.body.works) {
+            req.body.works.forEach(function (item){
+                work = new Work();
+                work.area = item.area;
+                work.icon_path = item.icon_path;
+                assignment.description = item.description;
+                aboutme.works.append(work);
+            });
+        }
+        if(req.body.workflow) {
+            req.body.workflow.forEach(function (item){
+                wf = new Workflow();
+                wf.step = item.step;
+                wf.description = item.description;
+                aboutme.workflow.append(wf);
+            });
+        }
+        if(req.body.testimonials) {
+            req.body.testimonials.forEach(function (item){
+                testimonial = new Testimonial();
+                testimonial.name = item.name;
+                testimonial.job = item.job;
+                testimonial.message = item.message;
+                aboutme.testimonials.append(testimonial);
+            });
+        }
         aboutme.clients = req.body.clients;
         aboutme.save((err) => {
             if(err) res.send("can't post aboutMe: ", err);
