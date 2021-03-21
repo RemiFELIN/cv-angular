@@ -1,5 +1,7 @@
-<div *ngFor="let education of educations">
-    <app-back-education-field [education]="education"></app-back-education-field>
-    <hr>
-    <app-back-education-field [experiance]="experiance"></app-back-education-field>
+
+<div *ngIf="educations">
+    <div *ngFor="let education of educations">
+        <app-back-education-field [education]="education"></app-back-education-field>
+    </div>
 </div>
+<app-back-education-create></app-back-education-create>

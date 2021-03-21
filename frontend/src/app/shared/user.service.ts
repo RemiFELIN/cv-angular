@@ -10,7 +10,9 @@ import { User } from '../models/user.model';
 })
 export class UserService {
 
-  url = "http://localhost:8010/api/users";
+  url = "http://localhost:8010/api/";
+  username:string;
+  token:string;
 
   constructor(private http:HttpClient) { }
 
@@ -28,5 +30,9 @@ export class UserService {
     .pipe(
       catchError(this.handleError<User[]>("getUsers()"))
     );
+  }
+
+  login(user:User):Observable<any> {
+    return this.http.post(this.url + "auth/login", user);
   }
 }
