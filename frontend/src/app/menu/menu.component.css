@@ -1,0 +1,11 @@
+li {
+	display: inline;
+	list-style: none; /* nécessaire pour IE7 */
+}
+li::before { content: " - "; }
+li::after { content: " "; }
+ul { margin: 0; }
+div { 
+    height: 60px;
+    background-color: white;
+}

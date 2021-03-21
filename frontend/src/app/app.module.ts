@@ -20,6 +20,9 @@ import { ResumeBackComponent } from './back-office/resume/resume.component';
 import { BackEducationFieldComponent } from './back-office/resume/back-education-field/back-education-field.component';
 import { FormsModule } from '@angular/forms';
 import { CvListComponent } from './cv-list/cv-list.component';
+import { WorkComponent } from './about-me/work/work.component';
+import { WorkflowComponent } from './about-me/workflow/workflow.component';
+import { TestimonialComponent } from './about-me/testimonial/testimonial.component';
 
 const routes:Routes = [
   { path:'home', component: HomeComponent },
@@ -49,7 +52,10 @@ const routes:Routes = [
     ResumeBackComponent,
     BackEducationFieldComponent,
     CvListComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    WorkComponent,
+    WorkflowComponent,
+    TestimonialComponent
   ],
   imports: [
     BrowserModule,

@@ -2,17 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Education } from '../models/education.model';
-import { User } from '../models/user.model';
+import { AboutMe } from '../models/about-me.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-
-  url = "http://localhost:8010/api/users";
+export class AboutMeService {
 
   constructor(private http:HttpClient) { }
+
+  url = "http://localhost:8010/api/";
 
   private handleError<T>(operation: any, result?: T) {
     return (error: any): Observable<T> => {
@@ -23,10 +22,11 @@ export class UserService {
     };
   }
 
-  getUsers():Observable<User[]> {
-    return this.http.get<User[]>(this.url)
+  getAboutMe(lang:string, username:string):Observable<AboutMe> {
+    console.log(this.url + lang + "/" + username + "/aboutme")
+    return this.http.get<AboutMe>(this.url + lang + "/" + username + "/aboutme")
     .pipe(
-      catchError(this.handleError<User[]>("getUsers()"))
+      catchError(this.handleError<AboutMe>("getAboutMe" + username))
     );
   }
 }

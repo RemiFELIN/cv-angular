@@ -1,13 +1,18 @@
-<cdk-virtual-scroll-viewport itemSize="100" class="fact-scroll-viewport">
-    <li *cdkVirtualFor="let fact of dataSource">
-  
-      <div *ngIf="fact" class="fact-item">
-        <div class="fact-date">{{ fact.title }}</div>
-        <img src="{{ fact.image }}">
-      </div>
-      <div *ngIf="!fact">
-        Loading ...
-      </div>
-  
-    </li>
-</cdk-virtual-scroll-viewport>
+<app-menu></app-menu>
+<div id="portfolio">
+  <h2>PORTFOLIO</h2>
+  <p class="center">Samples of some of my work from the past year</p>
+  <cdk-virtual-scroll-viewport itemSize="100" class="fact-scroll-viewport">
+      <li *cdkVirtualFor="let fact of dataSource">
+    
+        <div *ngIf="fact" class="fact-item">
+          <div class="fact-date">{{ fact.title }}</div><br>
+          <img src="{{ fact.image }}">
+        </div>
+        <div *ngIf="!fact">
+          Loading ...
+        </div>
+    
+      </li>
+  </cdk-virtual-scroll-viewport>
+</div>

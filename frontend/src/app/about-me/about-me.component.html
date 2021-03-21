@@ -1,2 +1,24 @@
 <app-menu></app-menu>
-<p>about-me works!</p>
+<div id="aboutMe" *ngIf="aboutMe">
+    <h2>ABOUT ME</h2>
+    <p class="center">#Ideas and some .Class</p>
+    <h4>Who Am I</h4>
+    <p>{{ aboutMe.presentation }}</p>
+    <hr>
+    <h3>What I'm Doing</h3>
+    <div id="work">
+        <div class="work card" *ngFor="let work of aboutMe.works">
+            <app-work [work]="work"></app-work>
+        </div>
+    </div>
+    <hr>
+    <h3>Workflow</h3>
+    <div class="workflow card" *ngFor="let workflow of aboutMe.workflow">
+        <app-workflow [workflow]="workflow"></app-workflow>
+    </div>
+    <hr>
+    <h3>Testimonials</h3>
+    <div class="testimonial card" *ngFor="let testimonial of aboutMe.testimonials">
+        <app-testimonial [testimonial]="testimonial"></app-testimonial>
+    </div>
+</div>

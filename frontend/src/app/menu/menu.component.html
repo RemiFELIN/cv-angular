@@ -1,5 +1,7 @@
 <div>
-    <a *ngFor="let route of routers" routerLink="{{ route.route }}">{{ route.nom }}</a>
-    <a routerLink="/fr/remi.felin/home">-> Remi Félin</a>
-    <a routerLink="/fr/benjamin.molinet/home">-> Benjamin Molinet</a>
+    <ul>
+        <li *ngFor="let route of routers"><a routerLink="{{ route.route }}">{{ route.nom }}</a></li>
+        <li><a routerLink="/fr/remi.felin/home">Remi Félin</a></li>
+        <li><a routerLink="/fr/benjamin.molinet/home">Benjamin Molinet</a></li>
+    </ul>
 </div>

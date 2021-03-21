@@ -1,5 +1,6 @@
 import { CollectionViewer, DataSource } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Portfolio } from '../models/portfolio.model';
 import { PortfolioService } from '../shared/portfolio.service';
@@ -13,8 +14,8 @@ export class PortfolioScrollerComponent {
   
   dataSource: PortfolioDataSource;
 
-  constructor(private portfolioService: PortfolioService) {
-    this.dataSource = new PortfolioDataSource(portfolioService);
+  constructor(private route:ActivatedRoute,private portfolioService: PortfolioService) {
+    this.dataSource = new PortfolioDataSource(route, portfolioService);
     console.log(this.dataSource)
   }
 
@@ -28,7 +29,7 @@ export class PortfolioDataSource extends DataSource<Portfolio | undefined> {
   private pageSize = 10;
   private lastPage = 0;
 
-  constructor(private portfolioService: PortfolioService) {
+  constructor(private route:ActivatedRoute, private portfolioService: PortfolioService) {
     super();
 
     // Start with some data.
@@ -57,9 +58,10 @@ export class PortfolioDataSource extends DataSource<Portfolio | undefined> {
   }
 
   private _fetchFactPage(): void {
+    let {lang, username} = this.route.snapshot.params;
     for (let i = 0; i < this.pageSize; ++i) {
-      this.portfolioService.getPortfolio("fr", "remi.felin").subscribe(res => {
-        this.cachedFacts = this.cachedFacts.concat(res);
+      this.portfolioService.getPortfolio(lang, username).subscribe(res => {
+        this.cachedFacts = this.cachedFacts.concat(res); 
         this.dataStream.next(this.cachedFacts);
       });
     }

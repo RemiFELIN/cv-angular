@@ -1,0 +1,52 @@
+div {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(117, 116, 116, 0.69) 100%);
+    /*background: url(http://benjamin-molinet.fr/images/start_page.jpg) center center no-repeat fixed;*/
+    background-size: cover;
+    position: relative;
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    text-align: center;
+}
+h1 {
+    color: #FFFFFF;
+    font-size: 80px;
+    margin: 30px 0;
+    text-transform: capitalize;
+    line-height: 1;
+}
+h3 {
+    font-size: 1.953em;
+    color: #FFFFFF;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    margin: 0;
+}
+p {
+    position: relative;
+    color: #FFFFFF;
+    font-size: 24px;
+    text-transform: capitalize;
+    padding-left: 45px;
+    padding-right: 45px;
+    display: inline-block;
+}
+p::after, p::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: #FFFFFF;
+}
+p::after {
+    left: auto;
+    right: 0;
+}
+.center {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100vw;
+    height: calc(100vh - 60px);
+    min-height: 100%;
+}

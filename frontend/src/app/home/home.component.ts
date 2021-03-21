@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Information } from '../models/information.model';
 import { InformationService } from '../shared/information.service';
@@ -26,6 +26,11 @@ export class HomeComponent implements OnInit {
         console.log(this.informations)
        }
      });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    let {lang, username} = this.route.snapshot.params;
+    console.log(changes)
   }
 
 }

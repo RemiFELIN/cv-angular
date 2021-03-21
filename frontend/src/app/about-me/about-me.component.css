@@ -1,0 +1,20 @@
+#aboutMe {
+    max-width: 1140px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.card {
+    margin: 1%;
+    padding: 1%;
+    float: left;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.work {  width: 29.333%; }
+.workflow { width: 21%; }
+.testimonial { width: 46%; }

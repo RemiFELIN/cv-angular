@@ -1,2 +1,10 @@
 <app-menu></app-menu>
-<p>contact works!</p>
+<div id="contact" *ngIf="informations">
+    <h2>CONTACT ME</h2>
+    <p class="center">Need Some Help!</p>
+    <h3>Contact Me</h3>
+    <span>{{ informations.address }}</span><br>
+    <span>{{ informations.postal_code }} {{ informations.country}}</span><br>
+    <span>{{ informations.mail }}</span><br>
+    <span>{{ informations.phone }}</span><br>
+</div>

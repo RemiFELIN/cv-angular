@@ -1,11 +1,14 @@
 <app-menu></app-menu>
-<h1>RESUME</h1>
-<h2>Me, Myself and I</h2>
-<h3>Education</h3>
-<div *ngFor="let education of educations">
-    <app-education-detail [education]="education"></app-education-detail>
-</div>
-<h3>Experiences</h3>
-<div *ngFor="let experience of experiences">
-    <app-experience-detail [experience]="experience"></app-experience-detail>
+<div id="resume">
+    <h2>RESUME</h2>
+    <p class="center">Me, Myself and I</p>
+    <h3>Education</h3>
+    <div *ngFor="let education of educations">
+        <app-education-detail [education]="education"></app-education-detail>
+    </div>
+    <br><br>
+    <h3>Experiences</h3>
+    <div *ngFor="let experience of experiences">
+        <app-experience-detail [experience]="experience"></app-experience-detail>
+    </div>
 </div>
