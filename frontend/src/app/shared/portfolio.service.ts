@@ -33,8 +33,8 @@ export class PortfolioService {
     const day = Math.floor(Math.random() * maxDay) + 1;
     return this.http.get<Portfolio[]>(`http://numbersapi.com/${month}/${day}/date?json`);
   }*/
-  getPortfolio(username:string):Observable<Portfolio[]> {
-    return this.http.get<Portfolio[]>(this.url + username + "/portfolio")
+  getPortfolio(lang:string, username:string):Observable<Portfolio[]> {
+    return this.http.get<Portfolio[]>(this.url + lang + "/" + username + "/portfolio")
     .pipe(
       catchError(this.handleError<Portfolio[]>("getPortfolio(uuid)" + username))
     );

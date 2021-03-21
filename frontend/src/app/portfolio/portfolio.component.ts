@@ -6,7 +6,7 @@ import { PortfolioService } from '../shared/portfolio.service';
 
 @Component({
   selector: 'app-portfolio',
-  templateUrl: './portfolio.component.html',
+  templateUrl: './portfolio-scroller.component.html',
   styleUrls: ['./portfolio.component.scss']
 })
 export class PortfolioScrollerComponent {
@@ -58,7 +58,7 @@ export class PortfolioDataSource extends DataSource<Portfolio | undefined> {
 
   private _fetchFactPage(): void {
     for (let i = 0; i < this.pageSize; ++i) {
-      this.portfolioService.getPortfolio("remi.felin").subscribe(res => {
+      this.portfolioService.getPortfolio("fr", "remi.felin").subscribe(res => {
         this.cachedFacts = this.cachedFacts.concat(res);
         this.dataStream.next(this.cachedFacts);
       });

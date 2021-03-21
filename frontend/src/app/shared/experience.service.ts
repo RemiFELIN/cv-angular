@@ -24,7 +24,7 @@ export class ExperienceService {
   }
 
   getExperiences(lang:string, username:string):Observable<Experience[]> {
-    return this.http.get<Experience[]>(this.url + lang + "/" + username + "/experience")
+    return this.http.get<Experience[]>(this.url + lang + "/" + username + "/experiences")
     .pipe(
       catchError(this.handleError<Experience[]>("getExperiences(uuid)" + username))
     );

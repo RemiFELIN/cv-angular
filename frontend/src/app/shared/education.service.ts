@@ -23,7 +23,7 @@ export class EducationService {
   }
 
   getEducations(lang:string, username:string):Observable<Education[]> {
-    return this.http.get<Education[]>(this.url + lang + "/" + username + "/education")
+    return this.http.get<Education[]>(this.url + lang + "/" + username + "/educations")
     .pipe(
       catchError(this.handleError<Education[]>("getEducations(username)" + username))
     );
