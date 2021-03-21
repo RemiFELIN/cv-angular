@@ -1,5 +1,8 @@
 let Message = require('../model/message');
 
+let User = require('../auth/user');
+var VerifyToken = require('../auth/verifyToken');
+
 // https://afteracademy.com/blog/mastering-mongoose-for-mongodb-and-nodejs
 
 // Récupérer tous les messages (GET)
@@ -32,20 +35,32 @@ function postMessage(req, res){
 }
 
 // Update d'un message (PUT)
-function updateMessage(req, res) {
+function updateMessage(req, res, next) {
     let _id = req.params._id;
-    Message.findOneAndUpdate({_id: _id}, req.body, {new: true}, (err, message) => {
-        if(err) res.send(err);
-        res.json({message: `message updated !`});
+    VerifyToken(req, res, next);
+    User.findOne({_id: req.userId}, (err, user) => {
+        if(err) res.status(500).send(err);
+        if(!user) res.status(404).send("No user found.");
+        // res.status(200).send(user);
+        Message.findOneAndUpdate({_id: _id}, req.body, {new: true}, (err, message) => {
+            if(err) res.send(err);
+            res.json({message: `message updated !`});
+        });
     });
 }
 
 // suppression d'un message (DELETE)
-function deleteMessage(req, res) {
+function deleteMessage(req, res, next) {
     let _id = req.params._id;
-    Message.findOneAndRemove({_id: _id}, (err, message) => {
-        if(err) res.send(err);
-        res.json({message: `message deleted`});
+    VerifyToken(req, res, next);
+    User.findOne({_id: req.userId}, (err, user) => {
+        if(err) res.status(500).send(err);
+        if(!user) res.status(404).send("No user found.");
+        // res.status(200).send(user);
+        Message.findOneAndRemove({_id: _id}, (err, message) => {
+            if(err) res.send(err);
+            res.json({message: `message deleted`});
+        });
     });
 }
 

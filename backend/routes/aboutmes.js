@@ -2,6 +2,9 @@ let AboutMe = require('../model/aboutme');
 let Work = require('../model/aboutme/work');
 let Workflow = require('../model/aboutme/workflow');
 let Testimonial = require('../model/aboutme/testimonial');
+var VerifyToken = require('../auth/verifyToken');
+
+let User = require('../auth/user');
 
 // https://afteracademy.com/blog/mastering-mongoose-for-mongodb-and-nodejs
 
@@ -24,52 +27,67 @@ function getAboutMe(req, res){
 
 // Ajout d'un AboutMe (POST)
 function postAboutMe(req, res){
-    let aboutme = new AboutMe();
-    aboutme.username = req.params.username;
-    aboutme.language = req.body.language;
-    aboutme.presentation = req.body.presentation;
-    req.body.works.forEach(function (item){
-        work = new Work();
-        work.area = item.area;
-        work.icon_path = item.icon_path;
-        assignment.description = item.description;
-        aboutme.works.append(work);
-    });
-    req.body.workflow.forEach(function (item){
-        wf = new Workflow();
-        wf.step = item.step;
-        wf.description = item.description;
-        aboutme.workflow.append(wf);
-    });
-    req.body.testimonials.forEach(function (item){
-        testimonial = new Testimonial();
-        testimonial.name = item.name;
-        testimonial.job = item.job;
-        testimonial.message = item.message;
-        aboutme.testimonials.append(testimonial);
-    });
-    aboutme.clients = req.body.clients;
-    aboutme.save((err) => {
-        if(err) res.send("can't post aboutMe: ", err);
-        res.json({ message: `Your aboutMe has been saved !`});
+    VerifyToken(req, res, next);
+    User.findOne({_id: req.userId}, (err, user) => {
+        if(err) res.status(500).send(err);
+        if(!user) res.status(404).send("No user found.");
+        let aboutme = new AboutMe();
+        aboutme.username = user.username;
+        aboutme.language = req.body.language;
+        aboutme.presentation = req.body.presentation;
+        req.body.works.forEach(function (item){
+            work = new Work();
+            work.area = item.area;
+            work.icon_path = item.icon_path;
+            assignment.description = item.description;
+            aboutme.works.append(work);
+        });
+        req.body.workflow.forEach(function (item){
+            wf = new Workflow();
+            wf.step = item.step;
+            wf.description = item.description;
+            aboutme.workflow.append(wf);
+        });
+        req.body.testimonials.forEach(function (item){
+            testimonial = new Testimonial();
+            testimonial.name = item.name;
+            testimonial.job = item.job;
+            testimonial.message = item.message;
+            aboutme.testimonials.append(testimonial);
+        });
+        aboutme.clients = req.body.clients;
+        aboutme.save((err) => {
+            if(err) res.send("can't post aboutMe: ", err);
+            res.json({ message: `Your aboutMe has been saved !`});
+        });
     });
 }
 
 // Update d'un aboutme (PUT)
-function updateAboutMe(req, res) {
-    let _id = req.params._id;
-    AboutMe.findOneAndUpdate({_id: _id}, req.body, {new: true}, (err, aboutMe) => {
-        if(err) res.send(err);
-        res.json({message: `aboutMe updated !`});
+function updateAboutMe(req, res, next) {
+    VerifyToken(req, res, next);
+    User.findOne({_id: req.userId}, (err, user) => {
+        if(err) res.status(500).send(err);
+        if(!user) res.status(404).send("No user found.");
+        // res.status(200).send(user);
+        AboutMe.findOneAndUpdate({username: user.username}, req.body, {new: true}, (err, aboutMe) => {
+            if(err) res.send(err);
+            res.json({message: `aboutMe updated !`});
+        });
     });
 }
 
 // suppression d'un aboutme (DELETE)
-function deleteAboutMe(req, res) {
-    let _id = req.params._id;
-    AboutMe.findOneAndRemove({_id: _id}, (err, aboutMe) => {
-        if(err) res.send(err);
-        res.json({message: `aboutMe deleted`});
+function deleteAboutMe(req, res, next) {
+    VerifyToken(req, res, next);
+    User.findOne({_id: req.userId}, (err, user) => {
+        if(err) res.status(500).send(err);
+        if(!user) res.status(404).send("No user found.");
+        // res.status(200).send(user);
+        AboutMe.findOneAndRemove({username: username}, (err, aboutMe) => {
+            if(err) res.send(err);
+            res.json({message: `aboutMe deleted`});
+        });
     });
 }
 

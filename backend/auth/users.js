@@ -2,6 +2,7 @@ let User = require('./user');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var config = require('../config');
+var VerifyToken = require('./verifyToken');
 
 // https://afteracademy.com/blog/mastering-mongoose-for-mongodb-and-nodejs
 /** Using JSON Web Token to authenticate a current user and authorize various ressources */
@@ -29,13 +30,13 @@ function login(req, res){
     User.findOne({ username: req.body.username }, (err, user) => {
         if(err) return res.status(500).send('Error on the server');
         if(!user) return res.status(404).send('No user found');
-
         var isValidPassword = bcrypt.compareSync(req.body.password, user.password);
         if(!isValidPassword) return res.status(401).send({auth: false, token: null});
 
         var token = jwt.sign({ id: user._id }, config.secret, {
             expiresIn: 86400 // == 24 hours
-        })
+        });
+        res.status(200).send({ auth:true, token: token, message: `${user.username} connected !`});
     });
 }
 
@@ -50,31 +51,45 @@ function register(req, res){
     // encrypt password
     var hashedPassword = bcrypt.hashSync(req.body.password, 8);
     user.username = req.body.username;
-    user.email = req.body.email;
     user.password = hashedPassword;
     user.save((err, user) => {
         if(err) res.status(500).send("can't save user: ", err);
         var token = jwt.sign({ id:user._id }, config.secret, {
             expiresIn: 86400 // == 24 houres
         });
-        res.status(200).json({ auth:true, token: token, message: `'${user.nom_utilisateur}' saved !`});
+        res.status(200).json({ auth:true, token: token, message: `${user.username} saved !`});
     });
 }
 
-// Update d'un utilisateur (PUT)
-function updateUser(req, res) {
-    User.findByIdAndUpdate(req.body._id, req.body, {new: true}, (err, user) => {
-        if(err) res.status(500).send(err);
-        res.status(200).json({message: `updated`});
+function updatePassword(req, res, next) {
+    VerifyToken(req, res, next);
+    let newPassword = bcrypt.hashSync(req.body.password, 8);
+    req.body.password = newPassword;
+    User.findOneAndUpdate({_id: req.userId}, req.body, {new: true}, (err, user) => {
+        if(err) res.status(500).send("There was a problem finding the user.");
+        if(!user) res.status(404).send("No user found.");
+        res.status(200).json({message: `${user.username} updated`});
     });
 }
 
 // suppression d'un utilisateur (DELETE)
-function deleteUser(req, res) {
-    User.findByIdAndRemove(req.params.id, (err, user) => {
+function deleteUser(req, res, next) {
+    VerifyToken(req, res, next);
+    User.findOneAndRemove({_id: req.userId}, (err, user) => {
         if(err) res.status(500).send(err);
-        res.status(200).json({message: `${user.nom_utilisateur} deleted`});
+        if(!user) res.status(404).send("No user found.");
+        res.status(200).json({message: `${user.username} deleted`});
     });
 }
 
-module.exports = { getUsers, getUser, login, register, logout, deleteUser, updateUser };
+// Récupérer ses identifiants
+function getAccount(req, res, next) {
+    VerifyToken(req, res, next);
+    User.findOne({_id: req.userId}, (err, user) => {
+        if(err) res.status(500).send(err);
+        if(!user) res.status(404).send("No user found.");
+        res.status(200).send(user);
+    });
+}
+
+module.exports = { getUsers, getUser, login, register, logout, deleteUser, updatePassword, getAccount };
