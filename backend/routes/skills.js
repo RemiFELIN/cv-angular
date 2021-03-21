@@ -13,7 +13,8 @@ function getSkills(req, res){
 
 function getSkill(req, res){
     let username = req.params.username;
-    Skill.find({username: username}, (err, skill) =>{
+    let language = req.params.language;
+    Skill.find({username: username, language: language}, (err, skill) =>{
         if(err) res.send(err);
         res.json(skill);
     })

@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
-let InformationSchema = Schema({
+let DetailSchema = Schema({
     username: String,
     language: String,
     name: String,
@@ -20,4 +20,4 @@ let InformationSchema = Schema({
 });
 
 // C'est à travers ce modèle Mongoose qu'on pourra faire le CRUD
-module.exports = mongoose.model('Information', InformationSchema);
+module.exports = mongoose.model('Detail', DetailSchema);

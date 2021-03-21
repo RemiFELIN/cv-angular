@@ -1,17 +1,15 @@
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
-var jwt = require('jsonwebtoken');
-let config = require('./config');
 
 let aboutme = require('./routes/aboutmes');
 let education = require('./routes/educations');
 let experience = require('./routes/experiences');
-let information = require('./routes/informations');
+let detail = require('./routes/details');
 let message = require('./routes/messages');
 let portfolio = require('./routes/portfolios');
 let skill = require('./routes/skills');
-let user = require('./routes/users');
+let user = require('./auth/users');
 
 let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -54,83 +52,82 @@ let port = process.env.PORT || 8010;
 const prefix = '/api';
 
 // ABOUTMES
-app.route(prefix + '/aboutmes')
+app.route(prefix + '/:language/aboutmes')
   .get(aboutme.getAboutMes)
   .post(aboutme.postAboutMe)
   .put(aboutme.updateAboutMe);
 
-app.route(prefix + '/:username/aboutme')
+app.route(prefix + '/:language/:username/aboutme')
   .get(aboutme.getAboutMe)
   .delete(aboutme.deleteAboutMe); 
 
 // EDUCATIONS
-app.route(prefix + '/educations')
+app.route(prefix + '/:language/educations')
 .get(education.getEducations)
 .post(education.postEducation)
 .put(education.updateEducation);
 
-app.route(prefix + '/:username/education')
+app.route(prefix + '/:language/:username/education')
 .get(education.getEducation)
 .delete(education.deleteEducation);
 
 // EXPERIENCES
-app.route(prefix + '/experiences')
+app.route(prefix + '/:language/experiences')
   .get(experience.getExperiences)
   .post(experience.postExperience)
   .put(experience.updateExperience);
 
-app.route(prefix + '/:username/experience')
+app.route(prefix + '/:language/:username/experience')
   .get(experience.getExperience)
   .delete(experience.deleteExperience); 
 
-// INFORMATIONS 
-// TODO : ne renvoie pas d'info (to fix)
-app.route(prefix + '/informations')
-.get(information.getInformations)
-.post(information.postInformation)
-.put(information.updateInformation);
+// DETAILS
+app.route(prefix + '/:language/details')
+.get(detail.getDetails)
+.post(detail.postDetail)
+.put(detail.updateDetail);
 
-app.route(prefix + '/:username/information')
-.get(information.getInformation)
-.delete(information.deleteInformation);
+app.route(prefix + '/:language/:username/detail')
+.get(detail.getDetail)
+.delete(detail.deleteDetail);
 
 // MESSAGES
-app.route(prefix + '/messages')
+app.route(prefix + '/:language/messages')
 .get(message.getMessages)
 .post(message.postMessage)
 .put(message.updateMessage);
 
-app.route(prefix + '/:username/message')
+app.route(prefix + '/:language/:username/message')
 .get(message.getMessage)
 .delete(message.deleteMessage);
 
 // PORTFOLIOS
-app.route(prefix + '/portfolios')
+app.route(prefix + '/:language/portfolios')
 .get(portfolio.getPortfolios)
 .post(portfolio.postPortfolio)
 .put(portfolio.updatePortfolio);
 
-app.route(prefix + '/:username/portfolio')
+app.route(prefix + '/:language/:username/portfolio')
 .get(portfolio.getPortfolio)
 .delete(portfolio.deletePortfolio);
 
 // SKILLS
-app.route(prefix + '/skills')
+app.route(prefix + '/:language/skills')
 .get(skill.getSkills)
 .post(skill.postSkill)
 .put(skill.updateSkill);
 
-app.route(prefix + '/:username/skill')
+app.route(prefix + '/:language/:username/skill')
 .get(skill.getSkill)
 .delete(skill.deleteSkill);
 
 // USERS
-app.route(prefix + '/users')
+app.route(prefix + '/:language/users')
   .get(user.getUsers)
   .post(user.register)
   .put(user.updateUser);
 
-app.route(prefix + '/:username/users')
+app.route(prefix + '/:language/:username/users')
   .get(user.getUser)
   .delete(user.deleteUser);
 
