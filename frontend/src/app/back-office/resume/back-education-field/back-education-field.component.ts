@@ -12,12 +12,23 @@ export class BackEducationFieldComponent implements OnInit {
   constructor(private educationService:EducationService) { }
 
   ngOnInit(): void {
+    console.log(this.education)
+    console.log(this.new)
   }
 
   @Input() education:Education;
+  @Input() new:boolean;
 
   onSaveEducation(){
     console.log(JSON.stringify(this.education));
+    this.educationService.updateEducations(this.education)
+    .subscribe(reponse => {
+      console.log("Ok");
+    })
+  }
+
+  onCreateEducation(){
+    console.log(JSON.stringify(this));
     this.educationService.updateEducations(this.education)
     .subscribe(reponse => {
       console.log("Ok");

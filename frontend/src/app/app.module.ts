@@ -23,6 +23,8 @@ import { CvListComponent } from './cv-list/cv-list.component';
 import { WorkComponent } from './about-me/work/work.component';
 import { WorkflowComponent } from './about-me/workflow/workflow.component';
 import { TestimonialComponent } from './about-me/testimonial/testimonial.component';
+import { AuthComponent } from './back-office/auth/auth.component';
+import { BackEducationCreateComponent } from './back-office/resume/back-education-create/back-education-create.component';
 
 const routes:Routes = [
   { path:'home', component: HomeComponent },
@@ -32,7 +34,8 @@ const routes:Routes = [
   { path:':lang/:username/resume', component: ResumeComponent },
   { path:':lang/:username/portfolio', component: PortfolioScrollerComponent },
   { path:':lang/:username/contact', component: ContactComponent },
-  { path:':lang/:username/back', component: BackOfficeComponent },
+  { path:'back', component: BackOfficeComponent },
+  { path:'fr/:username/back', component: ResumeBackComponent },
   { path: '**', component: NotFoundComponent },
 ]
 
@@ -55,7 +58,9 @@ const routes:Routes = [
     NotFoundComponent,
     WorkComponent,
     WorkflowComponent,
-    TestimonialComponent
+    TestimonialComponent,
+    AuthComponent,
+    BackEducationCreateComponent
   ],
   imports: [
     BrowserModule,

@@ -1,15 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Education } from '../models/education.model';
 import {map, tap, catchError} from 'rxjs/operators';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EducationService {
+  token:string;
+  headerDict;
+  requestOptions;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private localStorageService: LocalStorageService) {
+    
+    this.token = this.localStorageService.get("token");
+    this.headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'x-access-token': this.token,
+    };
+    this.requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(this.headerDict), 
+    };
+  }
 
   url = "http://localhost:8010/api/";
 
@@ -22,6 +37,10 @@ export class EducationService {
     };
   }
 
+  addEducations(education:Education):Observable<any> {
+    return this.http.post<Education>(this.url + "fr/remi.felin/educations/", JSON.stringify(education), this.requestOptions);
+  }
+
   getEducations(lang:string, username:string):Observable<Education[]> {
     return this.http.get<Education[]>(this.url + lang + "/" + username + "/educations")
     .pipe(
@@ -31,7 +50,8 @@ export class EducationService {
 
   updateEducations(education:Education):Observable<any> {
     console.log("Modifié...");
-    
-    return this.http.put(this.url, education);
+    console.log(this.localStorageService.get("token"));
+
+    return this.http.put(this.url + "fr/remi.felin/education/" + education._id, JSON.stringify(education), this.requestOptions);
   }
 }

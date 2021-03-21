@@ -1,9 +1,12 @@
-<div>
-    Start year <input type="text" [(ngModel)]="education.start_year">
-    End year <input type="text" [(ngModel)]="education.end_year">
+<div >
+    Id <input type="text" [(ngModel)]="education._id" disabled>
+    Username <input type="text" [(ngModel)]="education.username" disabled>
+    Langue <input type="text" [(ngModel)]="education.language" disabled>
+    Start year <input type="number" [(ngModel)]="education.start_year">
+    End year <input type="number" [(ngModel)]="education.end_year">
     Diplome <input type="text" [(ngModel)]="education.diploma">
     Description <input type="text" [(ngModel)]="education.description">
-
+    Link <input type="text" [(ngModel)]="education.link">
     <button (click)="onSaveEducation()">Send</button>
 </div>
 <hr>
