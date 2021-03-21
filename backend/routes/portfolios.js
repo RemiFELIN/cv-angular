@@ -23,7 +23,7 @@ function getPortfolio(req, res){
 }
 
 // Ajout d'un portfolio (POST)
-function postPortfolio(req, res){
+function postPortfolio(req, res, next){
     VerifyToken(req, res, next);
     User.findOne({_id: req.userId}, (err, user) => {
         if(err) res.status(500).send(err);

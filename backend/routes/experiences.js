@@ -24,7 +24,7 @@ function getExperience(req, res){
 }
 
 // Ajout d'une experience (POST)
-function postExperience(req, res){
+function postExperience(req, res, next){
     VerifyToken(req, res, next);
     User.findOne({_id: req.userId}, (err, user) => {
         if(err) res.status(500).send(err);
