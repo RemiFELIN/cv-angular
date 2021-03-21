@@ -14,17 +14,18 @@ export class MenuComponent implements OnInit {
   constructor(private route:ActivatedRoute) { }
   
   ngOnInit(): void {
-    const {uuid} = this.route.snapshot.params;
+    const {lang, username} = this.route.snapshot.params;
     this.routers = [
-      {route: `/${uuid}/home`, nom: "Home"},
-      {route: `/${uuid}/about-me`, nom: "About me"},
-      {route: `/${uuid}/resume`, nom: "Resume"},
-      {route: `/${uuid}/portfolio`, nom: "Portfolio"},
-      {route: `/${uuid}/contact`, nom: "Contact"},
+      {route: `/${lang}/${username}/home`, nom: "Home"},
+      {route: `/${lang}/${username}/about-me`, nom: "About me"},
+      {route: `/${lang}/${username}/resume`, nom: "Resume"},
+      {route: `/${lang}/${username}/portfolio`, nom: "Portfolio"},
+      {route: `/${lang}/${username}/contact`, nom: "Contact"},
     ];
     console.log(this.routers);
     //this.routerLink = `/${this.route.snapshot.params.uuid}/resume`;
-    console.log("uuid " + uuid);
+    console.log("username " + username);
+    console.log("lang " + lang);
   }
 
 }

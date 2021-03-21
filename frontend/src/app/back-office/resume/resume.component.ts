@@ -18,11 +18,11 @@ export class ResumeBackComponent implements OnInit {
               private experienceService:ExperienceService) { }
 
   ngOnInit(): void {
-    this.educationService.getEducations("remi.felin")
+    this.educationService.getEducations("fr", "remi.felin")
     .subscribe(a => {
       this.educations = a;
     })
-    this.experienceService.getExperiences("remi.felin")
+    this.experienceService.getExperiences("fr", "remi.felin")
     .subscribe(a => {
       this.experiences = a;
     })

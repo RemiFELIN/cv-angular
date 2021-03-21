@@ -22,30 +22,12 @@ export class EducationService {
     };
   }
 
-  getEducations(username:string):Observable<Education[]> {
-    console.log(this.url + username + "/education")
-    return this.http.get<Education[]>(this.url + username + "/education")
+  getEducations(lang:string, username:string):Observable<Education[]> {
+    return this.http.get<Education[]>(this.url + lang + "/" + username + "/education")
     .pipe(
-      catchError(this.handleError<Education[]>("getEducations(uuid)" + username))
+      catchError(this.handleError<Education[]>("getEducations(username)" + username))
     );
   }
-
-  /*getAssignment(id:number):Observable<Education> {
-    console.log("getAssignment"+id)
-
-   return this.http.get<Assignment>(this.url + "/" + id)
-   .pipe(
-     map(a => {
-       a.nom += " MODIFIE PAR MAP....."
-       return a;
-     }),
-     tap(a => {
-       console.log("TAP : " + a.nom);
-       return a;
-     }),
-     catchError(this.handleError<Assignment>(`getAssignment(id=${id})`))
-   );
-  }*/
 
   updateEducations(education:Education):Observable<any> {
     console.log("Modifié...");

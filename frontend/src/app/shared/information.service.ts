@@ -22,11 +22,10 @@ export class InformationService {
     };
   }
 
-  getInformations(username):Observable<Information> {
-    console.log(this.url + username + "/information");
-    return this.http.get<Information>(this.url + username + "/information")
+  getInformations(lang:string, username:string):Observable<Information> {
+    return this.http.get<Information>(this.url + lang + "/" + username + "/detail")
     .pipe(
-      catchError(this.handleError<Information>("getInformationByUuid()"))
+      catchError(this.handleError<Information>("getInformations"))
     );
   }
 }

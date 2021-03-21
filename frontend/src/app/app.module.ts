@@ -23,13 +23,13 @@ import { CvListComponent } from './cv-list/cv-list.component';
 
 const routes:Routes = [
   { path:'home', component: HomeComponent },
-  { path:':uuid', component: MenuComponent },
-  { path:':uuid/home', component: HomeComponent },
-  { path:':uuid/about-me', component: AboutMeComponent },
-  { path:':uuid/resume', component: ResumeComponent },
-  { path:':uuid/portfolio', component: PortfolioScrollerComponent },
-  { path:':uuid/contact', component: ContactComponent },
-  { path:':uuid/back', component: BackOfficeComponent },
+  { path:':lang/:username', component: MenuComponent },
+  { path:':lang/:username/home', component: HomeComponent },
+  { path:':lang/:username/about-me', component: AboutMeComponent },
+  { path:':lang/:username/resume', component: ResumeComponent },
+  { path:':lang/:username/portfolio', component: PortfolioScrollerComponent },
+  { path:':lang/:username/contact', component: ContactComponent },
+  { path:':lang/:username/back', component: BackOfficeComponent },
   { path: '**', component: NotFoundComponent },
 ]
 
