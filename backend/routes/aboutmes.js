@@ -26,7 +26,7 @@ function getAboutMe(req, res){
 }
 
 // Ajout d'un AboutMe (POST)
-function postAboutMe(req, res){
+function postAboutMe(req, res, next){
     VerifyToken(req, res, next);
     User.findOne({_id: req.userId}, (err, user) => {
         if(err) res.status(500).send(err);

@@ -23,7 +23,7 @@ function getEducation(req, res){
 }
 
 // Ajout d'une formation (POST)
-function postEducation(req, res){
+function postEducation(req, res, next){
     VerifyToken(req, res, next);
     User.findOne({_id: req.userId}, (err, user) => {
         if(err) res.status(500).send(err);

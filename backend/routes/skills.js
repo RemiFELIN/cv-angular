@@ -24,7 +24,7 @@ function getSkill(req, res){
 }
 
 // Ajout d'une Skill (POST)
-function postSkill(req, res){
+function postSkill(req, res, next){
     VerifyToken(req, res, next);
     User.findOne({_id: req.userId}, (err, user) => {
         if(err) res.status(500).send(err);

@@ -23,7 +23,7 @@ function getDetail(req, res){
 }
 
 // Ajout d'un Detail (POST)
-function postDetail(req, res){
+function postDetail(req, res, next){
     VerifyToken(req, res, next);
     User.findOne({_id: req.userId}, (err, user) => {
         if(err) res.status(500).send(err);
