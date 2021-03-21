@@ -53,73 +53,83 @@ const prefix = '/api';
 
 // ABOUTMES
 app.route(prefix + '/:language/aboutmes')
-  .get(aboutme.getAboutMes)
-  .post(aboutme.postAboutMe)
-  .put(aboutme.updateAboutMe);
+  .get(aboutme.getAboutMes);
 
 app.route(prefix + '/:language/:username/aboutme')
   .get(aboutme.getAboutMe)
+  .post(aboutme.postAboutMe)
+  .put(aboutme.updateAboutMe)
   .delete(aboutme.deleteAboutMe); 
 
 // EDUCATIONS
 app.route(prefix + '/:language/educations')
-.get(education.getEducations)
-.post(education.postEducation)
-.put(education.updateEducation);
+  .get(education.getEducations);
 
-app.route(prefix + '/:language/:username/education')
-.get(education.getEducation)
-.delete(education.deleteEducation);
+app.route(prefix + '/:language/:username/educations')
+  .get(education.getEducation)
+  .post(education.postEducation);
+
+app.route(prefix + '/:language/:username/education/:_id')
+  .delete(education.deleteEducation)
+  .put(education.updateEducation);
 
 // EXPERIENCES
 app.route(prefix + '/:language/experiences')
-  .get(experience.getExperiences)
-  .post(experience.postExperience)
-  .put(experience.updateExperience);
+  .get(experience.getExperiences);
 
-app.route(prefix + '/:language/:username/experience')
+app.route(prefix + '/:language/:username/experiences')
   .get(experience.getExperience)
-  .delete(experience.deleteExperience); 
+  .post(experience.postExperience);
+  
+app.route(prefix + '/:language/:username/experience/:_id')
+  .delete(experience.deleteExperience)
+  .put(experience.updateExperience);
 
 // DETAILS
 app.route(prefix + '/:language/details')
-.get(detail.getDetails)
-.post(detail.postDetail)
-.put(detail.updateDetail);
+  .get(detail.getDetails);
 
 app.route(prefix + '/:language/:username/detail')
-.get(detail.getDetail)
-.delete(detail.deleteDetail);
+  .get(detail.getDetail)
+  .post(detail.postDetail)
+  .put(detail.updateDetail)
+  .delete(detail.deleteDetail);
 
 // MESSAGES
 app.route(prefix + '/:language/messages')
-.get(message.getMessages)
-.post(message.postMessage)
-.put(message.updateMessage);
+  .get(message.getMessages);
 
-app.route(prefix + '/:language/:username/message')
-.get(message.getMessage)
-.delete(message.deleteMessage);
+app.route(prefix + '/:language/:username/messages')
+  .get(message.getMessage)
+  .post(message.postMessage);
+
+app.route(prefix + '/:language/:username/message/:_id')
+  .delete(message.deleteMessage)
+  .put(message.updateMessage);
 
 // PORTFOLIOS
 app.route(prefix + '/:language/portfolios')
-.get(portfolio.getPortfolios)
-.post(portfolio.postPortfolio)
-.put(portfolio.updatePortfolio);
+  .get(portfolio.getPortfolios);
 
 app.route(prefix + '/:language/:username/portfolio')
-.get(portfolio.getPortfolio)
-.delete(portfolio.deletePortfolio);
+  .get(portfolio.getPortfolio)
+  .post(portfolio.postPortfolio);
+
+app.route(prefix + '/:language/:username/portfolio/:_id')
+  .delete(portfolio.deletePortfolio)
+  .put(portfolio.updatePortfolio);
 
 // SKILLS
 app.route(prefix + '/:language/skills')
-.get(skill.getSkills)
-.post(skill.postSkill)
-.put(skill.updateSkill);
+  .get(skill.getSkills);
 
-app.route(prefix + '/:language/:username/skill')
-.get(skill.getSkill)
-.delete(skill.deleteSkill);
+app.route(prefix + '/:language/:username/skills')
+  .get(skill.getSkill)
+  .post(skill.postSkill);
+
+app.route(prefix + '/:language/:username/skill/:_id')
+  .delete(skill.deleteSkill)
+  .put(skill.updateSkill);
 
 // USERS
 app.route(prefix + '/:language/users')

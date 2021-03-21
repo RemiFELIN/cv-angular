@@ -22,7 +22,7 @@ function getEducation(req, res){
 // Ajout d'une formation (POST)
 function postEducation(req, res){
     let education = new Formation();
-    education.username = req.body.username;
+    education.username = req.params.username;
     education.language = req.body.language;
     education.start_year = req.body.start_year;
     education.end_year = req.body.end_year;
@@ -37,17 +37,19 @@ function postEducation(req, res){
 
 // Update d'une formation (PUT)
 function updateEducation(req, res) {
-    Education.findByIdAndUpdate(req.body._id, req.body, {new: true}, (err, education) => {
+    let _id = req.params._id;
+    Education.findOneAndUpdate({_id: _id}, req.body, {new: true}, (err, education) => {
         if(err) res.send(err);
-        res.json({message: `updated`});
+        res.json({message: `education updated`});
     });
 }
 
 // suppression d'une formation (DELETE)
 function deleteEducation(req, res) {
-    Education.findByIdAndRemove(req.params.id, (err, education) => {
+    let _id = req.params._id;
+    Education.findOneAndRemove({_id: _id}, (err, education) => {
         if(err) res.send(err);
-        res.json({message: `'${education.diploma}' diploma deleted`});
+        res.json({message: `education  deleted`});
     });
 }
 

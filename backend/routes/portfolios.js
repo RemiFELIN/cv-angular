@@ -22,7 +22,7 @@ function getPortfolio(req, res){
 // Ajout d'un portfolio (POST)
 function postPortfolio(req, res){
     let portfolio = new Portfolio();
-    portfolio.username = req.body.username;
+    portfolio.username = req.params.username;
     portfolio.language = req.body.language;
     portfolio.title = req.body.title;
     portfolio.type = req.body.type;
@@ -38,7 +38,8 @@ function postPortfolio(req, res){
 
 // Update d'un portfolio (PUT)
 function updatePortfolio(req, res) {
-    portfolio.findByIdAndUpdate(req.body._id, req.body, {new: true}, (err, portfolio) => {
+    let _id = req.params._id;
+    Portfolio.findOneAndUpdate({_id: _id}, req.body, {new: true}, (err, portfolio) => {
         if(err) res.send(err);
         res.json({message: `portfolio updated`});
     });
@@ -46,7 +47,8 @@ function updatePortfolio(req, res) {
 
 // suppression d'un portfolio (DELETE)
 function deletePortfolio(req, res) {
-    portfolio.findByIdAndRemove(req.params.id, (err, portfolio) => {
+    let _id = req.params._id;
+    Portfolio.findOneAndRemove({_id: _id}, (err, portfolio) => {
         if(err) res.send(err);
         res.json({message: `portfolio deleted`});
     });

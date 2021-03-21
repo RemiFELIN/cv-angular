@@ -23,7 +23,7 @@ function getExperience(req, res){
 // Ajout d'une experience (POST)
 function postExperience(req, res){
     let experience = new Experience();
-    experience.username = req.body.username;
+    experience.username = req.params.username;
     experience.language = req.body.language;
     experience.start_period = req.body.start_period;
     experience.end_period = req.body.end_period;
@@ -43,17 +43,19 @@ function postExperience(req, res){
 
 // Update d'une experience (PUT)
 function updateExperience(req, res) {
-    Experience.findByIdAndUpdate(req.body._id, req.body, {new: true}, (err, experience) => {
+    let _id = req.params._id;
+    Experience.findOneAndUpdate({_id: _id}, req.body, {new: true}, (err, experience) => {
         if(err) res.send(err);
-        res.json({message: `updated`});
+        res.json({message: `experience updated`});
     });
 }
 
 // suppression d'une experience (DELETE)
 function deleteExperience(req, res) {
-    Experience.findByIdAndRemove(req.params.id, (err, experience) => {
+    let _id = req.params._id;
+    Experience.findOneAndRemove({_id: _id}, (err, experience) => {
         if(err) res.send(err);
-        res.json({message: `experience '${experience.title}' deleted`});
+        res.json({message: `experience deleted`});
     })
 }
 

@@ -25,7 +25,7 @@ function getAboutMe(req, res){
 // Ajout d'un AboutMe (POST)
 function postAboutMe(req, res){
     let aboutme = new AboutMe();
-    aboutme.username = req.body.username;
+    aboutme.username = req.params.username;
     aboutme.language = req.body.language;
     aboutme.presentation = req.body.presentation;
     req.body.works.forEach(function (item){
@@ -55,17 +55,19 @@ function postAboutMe(req, res){
     });
 }
 
-// Update d'une Information (PUT)
+// Update d'un aboutme (PUT)
 function updateAboutMe(req, res) {
-    AboutMe.findByIdAndUpdate(req.body._id, req.body, {new: true}, (err, aboutMe) => {
+    let _id = req.params._id;
+    AboutMe.findOneAndUpdate({_id: _id}, req.body, {new: true}, (err, aboutMe) => {
         if(err) res.send(err);
         res.json({message: `aboutMe updated !`});
     });
 }
 
-// suppression d'une Information (DELETE)
+// suppression d'un aboutme (DELETE)
 function deleteAboutMe(req, res) {
-    AboutMe.findByIdAndRemove(req.params.id, (err, aboutMe) => {
+    let _id = req.params._id;
+    AboutMe.findOneAndRemove({_id: _id}, (err, aboutMe) => {
         if(err) res.send(err);
         res.json({message: `aboutMe deleted`});
     });
