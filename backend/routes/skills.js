@@ -23,7 +23,7 @@ function getSkill(req, res){
 // Ajout d'une Skill (POST)
 function postSkill(req, res){
     let skill = new Skill();
-    skill.username = req.body.username;
+    skill.username = req.params.username;
     skill.language = req.body.language;
     skill.type = req.body.type;
     req.body.areas.forEach(function (item){
@@ -41,17 +41,19 @@ function postSkill(req, res){
 
 // Update d'une Skill (PUT)
 function updateSkill(req, res) {
-    Skill.findByIdAndUpdate(req.body._id, req.body, {new: true}, (err, skill) => {
+    let _id = req.params._id;
+    Skill.findOneAndUpdate({_id: _id}, req.body, {new: true}, (err, skill) => {
         if(err) res.send(err);
-        res.json({message: `updated`});
+        res.json({message: `skill updated`});
     });
 }
 
 // suppression d'une Skill (DELETE)
 function deleteSkill(req, res) {
-    Skill.findByIdAndRemove(req.params.id, (err, skill) => {
+    let _id = req.params._id;
+    Skill.findOneAndRemove({_id: _id}, (err, skill) => {
         if(err) res.send(err);
-        res.json({message: `skills '${skill.type}' deleted`});
+        res.json({message: `skill deleted`});
     })
 }
 

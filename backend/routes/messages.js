@@ -21,11 +21,11 @@ function getMessage(req, res){
 // Ajout d'un message (POST)
 function postMessage(req, res){
     let message = new Message();
-    message.username = req.body.username;
+    message.username = req.params.username;
     message.name = req.body.name;
     message.mail = req.body.mail;
     message.message = req.body.message;
-    experience.save((err) => {
+    message.save((err) => {
         if(err) res.send("can't post message: ", err);
         res.json({ message: `Your message has been saved !`});
     });
@@ -33,17 +33,19 @@ function postMessage(req, res){
 
 // Update d'un message (PUT)
 function updateMessage(req, res) {
-    Information.findByIdAndUpdate(req.body._id, req.body, {new: true}, (err, message) => {
+    let _id = req.params._id;
+    Message.findOneAndUpdate({_id: _id}, req.body, {new: true}, (err, message) => {
         if(err) res.send(err);
-        res.json({message: `Message updated !`});
+        res.json({message: `message updated !`});
     });
 }
 
 // suppression d'un message (DELETE)
 function deleteMessage(req, res) {
-    Information.findByIdAndRemove(req.params.id, (err, message) => {
+    let _id = req.params._id;
+    Message.findOneAndRemove({_id: _id}, (err, message) => {
         if(err) res.send(err);
-        res.json({message: `Message deleted`});
+        res.json({message: `message deleted`});
     });
 }
 

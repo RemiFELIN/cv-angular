@@ -22,7 +22,7 @@ function getDetail(req, res){
 // Ajout d'un Detail (POST)
 function postDetail(req, res){
     let detail = new Detail();
-    detail.username = req.body.username;
+    detail.username = req.params.username;
     detail.language = req.body.language;
     detail.name = req.body.name;
     detail.surname = req.body.surname;
@@ -45,17 +45,19 @@ function postDetail(req, res){
 
 // Update d'un detail (PUT)
 function updateDetail(req, res) {
-    Detail.findByIdAndUpdate(req.body._id, req.body, {new: true}, (err, detail) => {
+    let _id = req.params._id;
+    Detail.findOneAndUpdate({_id: _id}, req.body, {new: true}, (err, detail) => {
         if(err) res.send(err);
-        res.json({message: `updated !`});
+        res.json({message: `details updated`});
     });
 }
 
 // suppression d'un Detail (DELETE)
 function deleteDetail(req, res) {
-    Detail.findByIdAndRemove(req.params.id, (err, detail) => {
+    let _id = req.params._id;
+    Detail.findOneAndRemove({_id: _id}, (err, detail) => {
         if(err) res.send(err);
-        res.json({message: `Details deleted`});
+        res.json({message: `details deleted`});
     });
 }
 
