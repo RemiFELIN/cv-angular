@@ -1,13 +1,11 @@
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
-var jwt = require('jsonwebtoken');
-let config = require('./config');
 
 let aboutme = require('./routes/aboutmes');
 let education = require('./routes/educations');
 let experience = require('./routes/experiences');
-let information = require('./routes/informations');
+let detail = require('./routes/details');
 let message = require('./routes/messages');
 let portfolio = require('./routes/portfolios');
 let skill = require('./routes/skills');
@@ -83,16 +81,15 @@ app.route(prefix + '/:username/experience')
   .get(experience.getExperience)
   .delete(experience.deleteExperience); 
 
-// INFORMATIONS 
-// TODO : ne renvoie pas d'info (to fix)
-app.route(prefix + '/informations')
-.get(information.getInformations)
-.post(information.postInformation)
-.put(information.updateInformation);
+// DETAILS
+app.route(prefix + '/details')
+.get(detail.getDetails)
+.post(detail.postDetail)
+.put(detail.updateDetail);
 
-app.route(prefix + '/:username/information')
-.get(information.getInformation)
-.delete(information.deleteInformation);
+app.route(prefix + '/:username/detail')
+.get(detail.getDetail)
+.delete(detail.deleteDetail);
 
 // MESSAGES
 app.route(prefix + '/messages')
