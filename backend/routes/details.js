@@ -12,7 +12,8 @@ function getDetails(req, res){
 
 function getDetail(req, res){
     let username = req.params.username;
-    Detail.find({username: username}, (err, detail) =>{
+    let language = req.params.language;
+    Detail.find({username: username, language: language}, (err, detail) =>{
         if(err) res.send(err);
         res.json(detail);
     });

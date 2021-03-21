@@ -15,7 +15,8 @@ function getAboutMes(req, res){
 
 function getAboutMe(req, res){
     let username = req.params.username;
-    AboutMe.find({username: username}, (err, aboutme) =>{
+    let language = req.params.language;
+    AboutMe.find({username: username, language: language}, (err, aboutme) =>{
         if(err) res.send(err);
         res.json(aboutme);
     });

@@ -4,6 +4,7 @@ let Schema = mongoose.Schema;
 let PortfolioSchema = Schema({
     username: String,
     language: String,
+    title: String,
     type: String,
     image: String,
     link: String,

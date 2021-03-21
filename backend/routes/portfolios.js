@@ -12,7 +12,8 @@ function getPortfolios(req, res){
 
 function getPortfolio(req, res){
     let username = req.params.username;
-    Portfolio.find({username: username}, (err, portfolio) =>{
+    let language = req.params.language;
+    Portfolio.find({username: username, language: language}, (err, portfolio) => {
         if(err) res.send(err);
         res.json(portfolio);
     });
@@ -23,6 +24,7 @@ function postPortfolio(req, res){
     let portfolio = new Portfolio();
     portfolio.username = req.body.username;
     portfolio.language = req.body.language;
+    portfolio.title = req.body.title;
     portfolio.type = req.body.type;
     portfolio.image = req.body.image;
     portfolio.link = req.body.link;

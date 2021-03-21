@@ -12,7 +12,8 @@ function getEducations(req, res){
 
 function getEducation(req, res){
     let username = req.params.username;
-    Education.find({username: username}, (err, education) =>{
+    let language = req.params.language;
+    Education.find({username: username, language: language}, (err, education) =>{
         if(err) res.send(err);
         res.json(education);
     })

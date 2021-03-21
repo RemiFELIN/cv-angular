@@ -13,7 +13,8 @@ function getExperiences(req, res){
 
 function getExperience(req, res){
     let username = req.params.username;
-    Experience.find({username: username}, (err, experience) =>{
+    let language = req.params.language;
+    Experience.find({username: username, language: language}, (err, experience) =>{
         if(err) res.send(err);
         res.json(experience);
     })
