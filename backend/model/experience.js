@@ -8,6 +8,8 @@ let ExperienceSchema = Schema({
     start_period: String,
     end_period: String,
     title: String,
+    description: String,
+    link: String,
     assignments: [Assignment]
 });
 

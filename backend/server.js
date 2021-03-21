@@ -57,9 +57,11 @@ app.route(prefix + '/:language/aboutmes')
 
 app.route(prefix + '/:language/:username/aboutme')
   .get(aboutme.getAboutMe)
-  .post(aboutme.postAboutMe)
+  .post(aboutme.postAboutMe); 
+
+app.route(prefix + '/:language/aboutme')
   .put(aboutme.updateAboutMe)
-  .delete(aboutme.deleteAboutMe); 
+  .delete(aboutme.deleteAboutMe);
 
 // EDUCATIONS
 app.route(prefix + '/:language/educations')
@@ -91,7 +93,9 @@ app.route(prefix + '/:language/details')
 
 app.route(prefix + '/:language/:username/detail')
   .get(detail.getDetail)
-  .post(detail.postDetail)
+  .post(detail.postDetail);
+
+app.route(prefix + '/:language/detail')
   .put(detail.updateDetail)
   .delete(detail.deleteDetail);
 
@@ -132,27 +136,17 @@ app.route(prefix + '/:language/:username/skill/:_id')
   .put(skill.updateSkill);
 
 // USERS
-app.route(prefix + '/:language/users')
-  .get(user.getUsers)
-  .post(user.register)
-  .put(user.updateUser);
+app.route(prefix + '/auth/register').post(user.register);
+app.route(prefix + '/auth/login').post(user.login);
+app.route(prefix + '/auth/logout').get(user.logout);
 
-app.route(prefix + '/:language/:username/users')
-  .get(user.getUser)
+app.route(prefix + '/auth/me')
+  .get(user.getAccount)
+  .put(user.updatePassword)
   .delete(user.deleteUser);
 
-/*
-app.route(prefix + '/user').get((req, res) => {
-  var token = req.headers['x-access-token'];
-  if(!token) return res.status(401).send({auth: false, message: 'No token provided.'});
-  jwt.verify(token, config.secret, (err, decoded) => {
-    if(err) return res.status(500).send({auth: false, message: 'Failed to authenticate token'});
-    res.status(200).send(decoded);
-  });
-});
-
-app.route(prefix + '/login').post(user.login);
-*/
+app.route(prefix + '/users')
+  .get(user.getUsers)
 
 // On démarre le serveur
 app.listen(port, "0.0.0.0");

@@ -3,7 +3,7 @@ let Schema = mongoose.Schema;
 
 let WorkSchema = Schema({
     area: String,
-    icon_path: Number,
+    icon_path: String,
     description: String
 });
 

@@ -10,7 +10,7 @@ function verifyToken(req, res, next) {
       
     // if everything good, save to request for use in other routes
     req.userId = decoded.id;
-    next();
+    // next();
   });
 }
 
