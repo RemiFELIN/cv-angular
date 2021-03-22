@@ -14,6 +14,9 @@ Pour installer l'application (si vous souhaitez réaliser des tests en local), v
 Afin d'enrichir la version déjà existante du back sur votre intranet, nous avons ajouté les points suivants:
 
 - Ajout des différents modèles sur notre cluster **MongoDB**; ajout des modèles et CRUD complet à l'aide de **Mongoose**
+
+> Ajout des collections en français et en anglais, ainsi via un paramètre, nous pouvons filtrer les ressources en fonction de la langue utilisée
+
 - Utilisation de la librairie **JSON WEB TOKEN** (en s'inspirant du tutoriel [suivant](https://www.freecodecamp.org/news/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52/)), à noter que :
 
 > Les mots de passe des utilisateurs sont encryptés avant d'être envoyé au cluster, le back prévoit un algorithme pour décrypter ce mot de passe lorsqu'un utilisateur souhaite se connecter "*d'un point de vue sécurité, c'est super !*"
