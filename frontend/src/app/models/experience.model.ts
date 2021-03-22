@@ -2,13 +2,13 @@ export class Experience {
     _id?:string;
 	username: string;
     language: string;
-    start_period: number;
-    end_period: number;
+    start_period: string;
+    end_period: string;
     title: string;
     description: string;
     link: string;
     assignments;
-    constructor(username: string, language: string, start_period: number, end_period: number, title: string, description: string, link: string){
+    constructor(username: string, language: string, start_period: string, end_period: string, title: string, description: string, link: string){
         this.username = username;
         this.language = language;
         this.start_period = start_period;

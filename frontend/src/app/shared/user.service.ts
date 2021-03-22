@@ -13,7 +13,7 @@ export class UserService {
   username:string;
   token:string;
   
-  url = "https://cv-miage-backend.herokuapp.com/api/users";
+  url = "https://cv-miage-backend.herokuapp.com/api/";
 
   constructor(private http:HttpClient) { }
 

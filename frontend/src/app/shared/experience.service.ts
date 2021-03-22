@@ -11,11 +11,13 @@ import { LocalStorageService } from './local-storage.service';
 
 export class ExperienceService {
   token:string;
+  username:string;
   headerDict;
   requestOptions;
 
   constructor(private http:HttpClient, private localStorageService: LocalStorageService) { 
     this.token = this.localStorageService.get("token");
+    this.username = this.localStorageService.get("username");
     this.headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -45,16 +47,16 @@ export class ExperienceService {
   }
 
   addExperiences(experience:Experience):Observable<any> {
-    return this.http.post<Experience>(this.url + "fr/remi.felin/experiences/", JSON.stringify(experience), this.requestOptions);
+    return this.http.post<Experience>(this.url + "fr/"+this.username+"/experiences/", JSON.stringify(experience), this.requestOptions);
   }
 
   updateExperiences(experience:Experience):Observable<any> {
     // TODO: Change this
     // fr/remi.felin is useless 
-    return this.http.put(this.url + "fr/remi.felin/experience/" + experience._id, JSON.stringify(experience), this.requestOptions);
+    return this.http.put(this.url + "fr/"+this.username+"/experience/" + experience._id, JSON.stringify(experience), this.requestOptions);
   }
 
   deleteExperiences(experience:Experience):Observable<any> {
-    return this.http.delete(this.url + "fr/remi.felin/experience/" + experience._id, this.requestOptions);
+    return this.http.delete(this.url + "fr/"+this.username+"/experience/" + experience._id, this.requestOptions);
   }
 }

@@ -10,8 +10,8 @@ import { ExperienceService } from 'src/app/shared/experience.service';
 })
 export class BackExperienceCreateComponent implements OnInit {
 
-  start_period:number;
-  end_period:number;
+  start_period:string;
+  end_period:string;
   title:string;
   description:string;
   link:string;

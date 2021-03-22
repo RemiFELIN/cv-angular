@@ -10,12 +10,14 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class EducationService {
   token:string;
+  username:string;
   headerDict;
   requestOptions;
 
   constructor(private http:HttpClient, private localStorageService: LocalStorageService) {
     
     this.token = this.localStorageService.get("token");
+    this.username = this.localStorageService.get("username");
     this.headerDict = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
@@ -38,7 +40,7 @@ export class EducationService {
   }
 
   addEducations(education:Education):Observable<any> {
-    return this.http.post<Education>(this.url + "fr/remi.felin/educations/", JSON.stringify(education), this.requestOptions);
+    return this.http.post<Education>(this.url + "fr/" + this.username + "/educations/", JSON.stringify(education), this.requestOptions);
   }
 
   getEducations(lang:string, username:string):Observable<Education[]> {
@@ -49,10 +51,10 @@ export class EducationService {
   }
 
   updateEducations(education:Education):Observable<any> {
-    return this.http.put(this.url + "fr/remi.felin/education/" + education._id, JSON.stringify(education), this.requestOptions);
+    return this.http.put(this.url + "fr/"+this.username+"/education/" + education._id, JSON.stringify(education), this.requestOptions);
   }
 
   deleteEducations(education:Education):Observable<any> {
-    return this.http.delete(this.url + "fr/remi.felin/education/" + education._id, this.requestOptions);
+    return this.http.delete(this.url + "fr/"+this.username+"/education/" + education._id, this.requestOptions);
   }
 }

@@ -1,8 +1,8 @@
 Create a new experience:
 <form ngForm>
-    Start year <input type="number" [(ngModel)]="start_period" name="start_period" required>
-    End year <input type="number" [(ngModel)]="end_period" name="end_period" required>
-    Diplome <input type="text" [(ngModel)]="title" name="title" required>
+    Start period <input type="text" [(ngModel)]="start_period" name="start_period" required>
+    End period <input type="text" [(ngModel)]="end_period" name="end_period" required>
+    Title <input type="text" [(ngModel)]="title" name="title" required>
     Description <input type="text" [(ngModel)]="description" name="description" required>
     Link <input type="text" [(ngModel)]="link" name="link" required>
     <button (click)="onCreateExperience()">Create</button>
