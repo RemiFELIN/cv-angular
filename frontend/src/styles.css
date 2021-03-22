@@ -17,6 +17,14 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.21;
     color: #444;
 }
+h1 {
+    color: #4a4a4a;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    line-height: 1.125;
+    font-size: 2.441em;
+    text-align: center;
+}
 h2 {
     color: #4a4a4a;
     text-transform: uppercase;

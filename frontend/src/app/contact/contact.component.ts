@@ -22,7 +22,6 @@ export class ContactComponent implements OnInit {
      .subscribe(a => {
        if(a) {
         this.informations = a[0];
-        console.log(this.informations)
        }
      });
   }

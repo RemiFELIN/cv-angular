@@ -22,10 +22,6 @@ export class MenuComponent implements OnInit {
       {route: `/${lang}/${username}/portfolio`, nom: "Portfolio"},
       {route: `/${lang}/${username}/contact`, nom: "Contact"},
     ];
-    console.log(this.routers);
-    //this.routerLink = `/${this.route.snapshot.params.uuid}/resume`;
-    console.log("username " + username);
-    console.log("lang " + lang);
   }
 
 }

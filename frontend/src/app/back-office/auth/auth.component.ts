@@ -22,7 +22,6 @@ export class AuthComponent implements OnInit {
   connection(){
     this.userService.login(new User(this.username, this.password))
     .subscribe(reponse => {
-      console.log(reponse.message);
       this.persist("token", reponse.token);
       this.persist("username", this.username);
       this.router.navigate(["/fr", this.username, "back"]);

@@ -49,9 +49,10 @@ export class EducationService {
   }
 
   updateEducations(education:Education):Observable<any> {
-    console.log("Modifié...");
-    console.log(this.localStorageService.get("token"));
-
     return this.http.put(this.url + "fr/remi.felin/education/" + education._id, JSON.stringify(education), this.requestOptions);
+  }
+
+  deleteEducations(education:Education):Observable<any> {
+    return this.http.delete(this.url + "fr/remi.felin/education/" + education._id, this.requestOptions);
   }
 }

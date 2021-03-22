@@ -1,7 +1,17 @@
-
+<a routerLink="/">Return to list</a>
+<h1>Back Office</h1>
+<h3>Educations</h3>
 <div *ngIf="educations">
     <div *ngFor="let education of educations">
-        <app-back-education-field [education]="education"></app-back-education-field>
+        <app-back-education-update [education]="education"></app-back-education-update>
     </div>
 </div>
 <app-back-education-create></app-back-education-create>
+<br><br>
+<h3>Experiences</h3>
+<div *ngIf="experiences">
+    <div *ngFor="let experience of experiences">
+        <app-back-experience-update [experience]="experience"></app-back-experience-update>
+    </div>
+</div>
+<app-back-experience-create></app-back-experience-create>

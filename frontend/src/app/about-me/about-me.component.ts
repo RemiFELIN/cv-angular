@@ -21,7 +21,6 @@ export class AboutMeComponent implements OnInit {
      .subscribe(a => {
        if(a) {
         this.aboutMe = a[0];
-        console.log(a)
        }
      });
   }

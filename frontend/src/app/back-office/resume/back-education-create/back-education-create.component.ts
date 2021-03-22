@@ -22,13 +22,19 @@ export class BackEducationCreateComponent implements OnInit {
   }
 
   onCreateEducation() {
-    console.log("onCreateEducation")
     const education:Education = new Education("remi.felin", "fr", this.start_year, this.end_year, this.diploma, this.description, this.link);
-    console.log(education)
     this.educationService.addEducations(education)
     .subscribe(reponse => {
-      console.log(reponse.message);
+      console.log(reponse);
+      this.reloadComponent();
     })
   }
+  
+  reloadComponent() {
+    let currentUrl = this.router.url;
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([currentUrl]);
+    }
 
 }

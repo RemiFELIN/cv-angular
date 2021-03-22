@@ -1,5 +1,4 @@
 <div >
-    Id <input type="text" [(ngModel)]="education._id" disabled>
     Username <input type="text" [(ngModel)]="education.username" disabled>
     Langue <input type="text" [(ngModel)]="education.language" disabled>
     Start year <input type="number" [(ngModel)]="education.start_year">
@@ -7,6 +6,7 @@
     Diplome <input type="text" [(ngModel)]="education.diploma">
     Description <input type="text" [(ngModel)]="education.description">
     Link <input type="text" [(ngModel)]="education.link">
-    <button (click)="onSaveEducation()">Send</button>
+    <button (click)="onSaveEducation()">Save</button>
+    <button (click)="onRemoveEducation()">Remove</button>
 </div>
 <hr>

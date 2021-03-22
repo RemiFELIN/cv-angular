@@ -1,16 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Experience } from '../models/experience.model';
 import {map, tap, catchError} from 'rxjs/operators';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ExperienceService {
+  token:string;
+  headerDict;
+  requestOptions;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private localStorageService: LocalStorageService) { 
+    this.token = this.localStorageService.get("token");
+    this.headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'x-access-token': this.token,
+    };
+    this.requestOptions = {                                                                                                                                                                                 
+      headers: new HttpHeaders(this.headerDict), 
+    };
+  }
 
   url = "http://localhost:8010/api/";
 
@@ -28,5 +42,19 @@ export class ExperienceService {
     .pipe(
       catchError(this.handleError<Experience[]>("getExperiences(uuid)" + username))
     );
+  }
+
+  addExperiences(experience:Experience):Observable<any> {
+    return this.http.post<Experience>(this.url + "fr/remi.felin/experiences/", JSON.stringify(experience), this.requestOptions);
+  }
+
+  updateExperiences(experience:Experience):Observable<any> {
+    // TODO: Change this
+    // fr/remi.felin is useless 
+    return this.http.put(this.url + "fr/remi.felin/experience/" + experience._id, JSON.stringify(experience), this.requestOptions);
+  }
+
+  deleteExperiences(experience:Experience):Observable<any> {
+    return this.http.delete(this.url + "fr/remi.felin/experience/" + experience._id, this.requestOptions);
   }
 }

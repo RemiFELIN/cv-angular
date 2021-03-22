@@ -28,14 +28,16 @@ export class ResumeBackComponent implements OnInit {
     this.educationService.getEducations("fr", username)
      .subscribe(a => {
        if(a) {
-        console.log(a)
         this.educations = a;
        }
      });
-  }
 
-  addEducation() {
-    console.log("addEducation");
+     this.experienceService.getExperiences("fr", username)
+      .subscribe(a => {
+        if(a) {
+         this.experiences = a;
+        }
+      });
   }
 
 }

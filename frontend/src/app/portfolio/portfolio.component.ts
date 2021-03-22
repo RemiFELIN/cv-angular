@@ -10,6 +10,7 @@ import { PortfolioService } from '../shared/portfolio.service';
   templateUrl: './portfolio-scroller.component.html',
   styleUrls: ['./portfolio.component.scss']
 })
+// Inspired from https://www.digitalocean.com/community/tutorials/angular-infinite-scroll
 export class PortfolioScrollerComponent {
   
   dataSource: PortfolioDataSource;

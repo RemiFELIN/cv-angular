@@ -23,7 +23,6 @@ export class AboutMeService {
   }
 
   getAboutMe(lang:string, username:string):Observable<AboutMe> {
-    console.log(this.url + lang + "/" + username + "/aboutme")
     return this.http.get<AboutMe>(this.url + lang + "/" + username + "/aboutme")
     .pipe(
       catchError(this.handleError<AboutMe>("getAboutMe" + username))

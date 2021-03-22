@@ -1,9 +1,9 @@
 Create a new education:
 <form ngForm>
-    Start year <input type="number" [(ngModel)]="start_year" name="start_year">
-    End year <input type="number" [(ngModel)]="end_year" name="end_year">
-    Diplome <input type="text" [(ngModel)]="diploma" name="diploma">
-    Description <input type="text" [(ngModel)]="description" name="description">
-    Link <input type="text" [(ngModel)]="link" name="link">
+    Start year <input type="number" [(ngModel)]="start_year" name="start_year" required>
+    End year <input type="number" [(ngModel)]="end_year" name="end_year" required>
+    Diplome <input type="text" [(ngModel)]="diploma" name="diploma" required>
+    Description <input type="text" [(ngModel)]="description" name="description" required>
+    Link <input type="text" [(ngModel)]="link" name="link" required>
     <button (click)="onCreateEducation()">Create</button>
 </form>
