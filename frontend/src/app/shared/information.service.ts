@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Information } from '../models/information.model';
+import { environment } from '../../environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class InformationService {
 
-  url = "http://localhost:8010/api/";
+  url = "https://cv-miage-backend.herokuapp.com/api/";
 
   constructor(private http:HttpClient) { }
 

@@ -33,13 +33,15 @@ function postSkill(req, res, next){
         skill.username = user.username;
         skill.language = req.body.language;
         skill.type = req.body.type;
-        req.body.areas.forEach(function (item){
-            area = new Area();
-            area.name = item.name;
-            area.level = item.level;
-            area.comment = item.comment;
-            skill.areas.append(area);
-        });
+        if(req.body.areas) {
+            req.body.areas.forEach(function (item){
+                area = new Area();
+                area.name = item.name;
+                area.level = item.level;
+                area.comment = item.comment;
+                skill.areas.append(area);
+            });
+        }
         skill.save((err) => {
             if(err) res.send("can't post skills: ", err);
             res.json({ message: `skills '${skill.type}' saved !`});

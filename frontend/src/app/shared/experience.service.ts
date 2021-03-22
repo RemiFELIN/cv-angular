@@ -26,7 +26,7 @@ export class ExperienceService {
     };
   }
 
-  url = "http://localhost:8010/api/";
+  url = "https://cv-miage-backend.herokuapp.com/api/";
 
   private handleError<T>(operation: any, result?: T) {
     return (error: any): Observable<T> => {

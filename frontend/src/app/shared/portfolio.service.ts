@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Portfolio } from '../models/portfolio.model';
+import { environment } from '../../environments/environment'; 
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class PortfolioService {
 
   constructor(private http:HttpClient) { }
 
-  url = "http://localhost:8010/api/";
+  url = "https://cv-miage-backend.herokuapp.com/api/";
 
   private handleError<T>(operation: any, result?: T) {
     return (error: any): Observable<T> => {

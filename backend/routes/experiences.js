@@ -37,13 +37,15 @@ function postExperience(req, res, next){
         experience.title = req.body.title;
         experience.description = req.body.description;
         experience.link = req.body.link;
-        req.body.assignments.forEach(function (item){
-            assignment = new Assignment();
-            assignment.title = item.title;
-            assignment.description = item.description;
-            assignment.technologies = item.technologies;
-            experience.assignments.append(assignment);
-        });
+        if(req.body.assignments) {
+            req.body.assignments.forEach(function (item){
+                assignment = new Assignment();
+                assignment.title = item.title;
+                assignment.description = item.description;
+                assignment.technologies = item.technologies;
+                experience.assignments.append(assignment);
+            });
+        }
         experience.save((err) => {
             if(err) res.send("can't post experience: ", err);
             res.json({ message: `experience '${experience.title}' saved !`});
